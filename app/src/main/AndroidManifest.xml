@@ -11,6 +11,17 @@
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/app_name" >
+
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" >
+
+        </activity>
+        <activity
+            android:name=".LeadActivity"
+            android:theme="@style/MyAppLeadTheme"
+            android:label="@string/title_activity_lead" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
