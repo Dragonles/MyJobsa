@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Part_Time_Job.iml" filepath="$PROJECT_DIR$/Part_Time_Job.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+=======
+>>>>>>> likun
     </modules>
   </component>
 </project>
