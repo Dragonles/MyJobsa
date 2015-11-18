@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Part_Time_Job.iml" filepath="$PROJECT_DIR$/Part_Time_Job.iml" />
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-=======
->>>>>>> likun
+      <module fileurl="file://$PROJECT_DIR$/MyJobsa.iml" filepath="$PROJECT_DIR$/MyJobsa.iml" />
     </modules>
   </component>
 </project>
