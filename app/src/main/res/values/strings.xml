@@ -16,4 +16,6 @@
     <string name="job_xinyong">招聘信用</string>
     <string name="job_yijian">意见反馈</string>
     <string name="job_about">关于我们</string>
+    <string name="loginout">退出登录</string>
+    <string name="login">请登录</string>
 </resources>
