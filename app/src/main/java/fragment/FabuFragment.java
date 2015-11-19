@@ -34,6 +34,7 @@ public class FabuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View v = inflater.inflate(R.layout.fragment_fabu, container, false);
         myfabu = (TextView) v.findViewById(R.id.fragment_fabu_myfabu);
         gridView = (GridView) v.findViewById(R.id.fragment_fa_gridview);
@@ -69,6 +70,7 @@ public class FabuFragment extends Fragment {
         return v;
         // Inflate the layout for this fragment
       //  return inflater.inflate(R.layout.fragment_fabu, container, false);
+
     }
 
 
