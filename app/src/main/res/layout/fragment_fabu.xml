@@ -1,9 +1,54 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.job.fragment.FabuFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.job.fragment.FabuFragment">
 
-    <!-- TODO: Update blank com.job.fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="2" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/fragment_fabu_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/fragment_fabu_title">
+
+            <TextView
+                android:id="@+id/fragment_fabu_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_fabu_title"
+                android:textSize="@dimen/fragment_fabu_title_text"
+                android:textColor="@color/fragment_fabu_title_text_coler"
+                android:layout_centerInParent="true"/>
+            <TextView
+                android:id="@+id/fragment_fabu_myfabu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/fragment_fabu_title_text_coler"
+                android:text="@string/fragment_fabu_title_text"
+                android:textSize="@dimen/fragment_fabu_title_text01"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <GridView
+            android:layout_marginTop="20dp"
+            android:id="@+id/fragment_fa_gridview"
+            android:layout_below="@id/fragment_fabu_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:columnWidth="100dp"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="0dp"></GridView>
+    </RelativeLayout>
+
+
 
 </FrameLayout>
