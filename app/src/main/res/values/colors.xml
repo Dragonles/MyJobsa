@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="edit_login_style">#ffffff</color>
+    <color name="btn_login_submit">#27C4F1</color>
+    <color name="btn_login_submit_pressed">#9927C4F1</color>
+</resources>
