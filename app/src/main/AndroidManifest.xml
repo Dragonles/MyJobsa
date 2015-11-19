@@ -9,24 +9,32 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:label="@string/app_name" >
-
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
-
         </activity>
         <activity
             android:name=".LeadActivity"
-            android:theme="@style/MyAppLeadTheme"
-            android:label="@string/title_activity_lead" >
+            android:label="@string/title_activity_lead"
+            android:theme="@style/MyAppLeadTheme" >
+        </activity>
+        <activity
+            android:name="com.job.utils.ShanActivity"
+            android:label="@string/title_activity_shan"
+            android:theme="@style/MyFullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".FabuDetailsActivity"
+            android:label="@string/title_activity_fabu_details"
+            android:theme="@style/MyFullscreen">
         </activity>
     </application>
 
