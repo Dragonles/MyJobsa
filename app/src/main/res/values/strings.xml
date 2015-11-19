@@ -7,4 +7,10 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_lead">LeadActivity</string>
     <string name="title_activity_shan">ShanActivity</string>
+
+    <!-- fragment_fabu_layout -->
+    <string name="fragment_fabu_title">选择发布类型</string>
+    <string name="fragment_fabu_title_text">我的发布</string>
+    <string name="title_activity_fabu_details">FabuDetailsActivity</string>
+
 </resources>

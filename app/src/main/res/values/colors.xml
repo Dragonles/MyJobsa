@@ -3,4 +3,7 @@
     <color name="edit_login_style">#ffffff</color>
     <color name="btn_login_submit">#27C4F1</color>
     <color name="btn_login_submit_pressed">#9927C4F1</color>
+    <!-- fragment_fabu_layout -->
+    <color name="fragment_fabu_title">#28BBBD</color>
+    <color name="fragment_fabu_title_text_coler">#fff</color>
 </resources>

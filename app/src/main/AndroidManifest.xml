@@ -20,17 +20,21 @@
             android:name=".LeadActivity"
             android:label="@string/title_activity_lead"
             android:theme="@style/MyAppLeadTheme" >
-
         </activity>
         <activity
             android:name="com.job.utils.ShanActivity"
             android:label="@string/title_activity_shan"
-            android:theme="@style/MyFullscreen">
+            android:theme="@style/MyFullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".FabuDetailsActivity"
+            android:label="@string/title_activity_fabu_details"
+            android:theme="@style/MyFullscreen">
         </activity>
     </application>
 
