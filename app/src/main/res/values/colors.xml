@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="style_color">#29BABD</color>
+    <color name="user_font_color">#FFFFFF</color>
+    <color name="public_font_color">#333333</color>
+    <color name="public_background_color">#F5F4F4</color>
+    <color name="public_liner_color">#DDDDDD</color>
+    <color name="loginout_button_color">#FF0000</color>
+</resources>

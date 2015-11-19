@@ -6,4 +6,14 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">username</string>
+    <string name="user_jianjie">简介</string>
+    <string name="user_renzheng">认证</string>
+    <string name="job_history">兼职历史</string>
+    <string name="job_font_go">></string>
+    <string name="job_qiuzhi_zhaopin">求职/招聘</string>
+    <string name="job_friends">邀请好友兼职</string>
+    <string name="job_xinyong">招聘信用</string>
+    <string name="job_yijian">意见反馈</string>
+    <string name="job_about">关于我们</string>
 </resources>
