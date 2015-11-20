@@ -19,5 +19,7 @@
     <color name="public_background_color">#F5F4F4</color>
     <color name="public_liner_color">#DDDDDD</color>
     <color name="loginout_button_color">#FF0000</color>
-
+    <color name="home_hot_cebian">#8E8F8F</color>
+    <color name="dark">#ffffff</color>
+    <color name="light">#FFEEEEEE</color>
 </resources>

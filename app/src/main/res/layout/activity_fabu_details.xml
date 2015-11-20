@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_fabu_title"
-            android:textSize="@dimen/fragment_fabu_title_text"
+
             android:textColor="@color/fragment_fabu_title_text_coler"
             android:layout_centerInParent="true"/>
 
@@ -36,7 +36,7 @@
             android:layout_marginRight="8dp"
             android:textColor="@color/fragment_fabu_title_text_coler"
             android:text="@string/fragment_fabu_title_text"
-            android:textSize="@dimen/fragment_fabu_title_text01"
+
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>

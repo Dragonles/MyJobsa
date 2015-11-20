@@ -64,7 +64,7 @@ public class LeadActivity extends Activity {
         ((Button)v3.findViewById(R.id.btn_lead_viewpager_start)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LeadActivity.this, MainActivity.class);
+                Intent intent = new Intent(LeadActivity.this, LoginActivity.class);
                 startActivity(intent);
                 LeadActivity.this.finish();
             }
@@ -72,7 +72,7 @@ public class LeadActivity extends Activity {
         findViewById(R.id.btn_lead_skip).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LeadActivity.this, MainActivity.class);
+                Intent intent = new Intent(LeadActivity.this, LoginActivity.class);
                 startActivity(intent);
                 LeadActivity.this.finish();
             }

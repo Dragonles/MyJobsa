@@ -8,7 +8,7 @@
         android:id="@+id/btn_lead_viewpager_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_viewpager_start_style"
+        android:background="@null"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
