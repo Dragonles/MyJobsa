@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/Part_Time_Job.iml" filepath="$PROJECT_DIR$/Part_Time_Job.iml" />
-=======
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/Part_Time_Job.iml" filepath="$PROJECT_DIR$/Part_Time_Job.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/MyJobsa.iml" filepath="$PROJECT_DIR$/MyJobsa.iml" />
->>>>>>> ea78e71e8895d546df0195bfddb4b263f845334e
->>>>>>> dev
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myjobsa.iml" filepath="$PROJECT_DIR$/myjobsa.iml" />
     </modules>
   </component>
 </project>
