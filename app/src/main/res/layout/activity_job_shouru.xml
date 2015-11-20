@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.job.activity.JobShouruActivity">
+
+    <RelativeLayout
+        android:id="@+id/rly_top"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/style_color">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="兼职收入"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rly_shouru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rly_top"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_shouru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收入："
+            android:textSize="22sp"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="666"
+            android:layout_toRightOf="@+id/tv_shouru"
+            android:layout_below="@+id/tv_shouru"
+            android:textSize="42sp"
+            android:textColor="#F00"/>
+
+        <TextView
+            android:id="@+id/tv_xianshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="隐藏/显示"
+            android:layout_toRightOf="@id/tv_num"
+            android:textSize="22sp"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:layout_toRightOf="@+id/tv_xianshi"
+            android:layout_below="@+id/tv_xianshi"
+            android:background="@drawable/qiuzhi_radio_button_style"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_jiange"
+        android:layout_below="@+id/rly_shouru"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:background="#F5F5F5"/>
+
+    <ListView
+        android:id="@+id/lv_shouru"
+        android:layout_below="@+id/tv_jiange"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+</RelativeLayout>

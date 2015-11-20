@@ -20,13 +20,11 @@
             android:name=".LeadActivity"
             android:label="@string/title_activity_lead"
             android:theme="@style/MyAppLeadTheme" >
-
         </activity>
         <activity
             android:name="com.job.utils.ShanActivity"
             android:label="@string/title_activity_shan"
             android:theme="@style/MyFullscreen" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,13 +34,23 @@
         <activity
             android:name=".LocationActivity"
             android:label="@string/title_activity_select" >
-
         </activity>
         <activity
             android:name=".FabuDetailsActivity"
             android:label="@string/title_activity_fabu_details"
-            android:theme="@style/MyFullscreen">
-
+            android:theme="@style/MyFullscreen" >
+        </activity>
+        <activity
+            android:name=".CreatJianliActivity"
+            android:label="@string/title_activity_creat_jianli" >
+        </activity>
+        <activity
+            android:name=".AboutWeActivity"
+            android:label="@string/title_activity_about_we" >
+        </activity>
+        <activity
+            android:name=".JobShouruActivity"
+            android:label="@string/title_activity_job_shouru" >
         </activity>
     </application>
 

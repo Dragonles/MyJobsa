@@ -96,7 +96,7 @@
                                         android:textSize="14sp"
                                         android:layout_marginLeft="5dp"
                                         android:text="@string/job_history"
-                                        android:textColor="@color/public_font_color"/>
+                                        />
                                 </RelativeLayout>
                                 <RelativeLayout
                                     android:layout_width="0dp"
