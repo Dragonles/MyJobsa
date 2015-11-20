@@ -40,10 +40,6 @@
             android:label="@string/title_activity_fabu_details"
             android:theme="@style/MyFullscreen" >
         </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
-        </activity>
     </application>
 
 </manifest>

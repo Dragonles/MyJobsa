@@ -34,6 +34,14 @@
     <string name="loginout">退出登录</string>
     <string name="login">请登录</string>
     <string name="title_activity_about">AboutActivity</string>
+    
+    <!-- job income strings -->
 
+    <string name="text_job_type">【类型：】</string>
+    <string name="text_job_jobs">服务员</string>
+    <string name="text_job_require">要求地址：</string>
+    <string name="text_job_district">兰山区内</string>
+    <string name="text_job_compensation">薪资：</string>
+    <string name="text_job_money">3000/月</string>
 
 </resources>
