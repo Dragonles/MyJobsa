@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- fragment_fabu_layout -->
-    <dimen name="fragment_fabu_title_text">22sp</dimen>
+    <dimen name="fragment_fabu_title_text">18sp</dimen>
     <dimen name="fragment_fabu_title_text01">14sp</dimen>
 
 </resources>

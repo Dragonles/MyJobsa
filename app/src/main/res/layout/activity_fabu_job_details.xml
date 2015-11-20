@@ -1,0 +1,511 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fabudetailsActivity_fabua_background"
+    tools:context="com.job.activity.FabuJobDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/fabu_job_rel01"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/fragment_fabu_title">
+
+        <ImageView
+            android:id="@+id/fabuactivity_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/back"/>
+        <TextView
+            android:id="@+id/fragment_fabu_title01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_fabu_job_title"
+            android:textSize="@dimen/fragment_fabu_title_text"
+            android:textColor="@color/fragment_fabu_title_text_coler"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <!-- 底部 -->
+    <RelativeLayout
+        android:id="@+id/fabu_rel_bottom01"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fabudetailsActivity_fabua_neirong_background">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/fabu_btn_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="电话交谈"
+                android:background="@drawable/btn_background_icon_login"/>
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/fabu_btn_yingpin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="我要应聘"
+                android:background="@drawable/btn_background_icon_login"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/fabu_job_srcollview"
+        android:layout_below="@id/fabu_job_rel01"
+        android:layout_above="@id/fabu_rel_bottom01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/fabu_job_text01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="40dp"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="职位："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+
+                        <TextView
+                            android:layout_toRightOf="@id/fabu_job_text01"
+                            android:id="@+id/edit_fabu_job_zhiye"
+                            android:layout_marginLeft="3dp"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工作职业"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/fabu_job_text02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="20dp"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="薪资："
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                        <TextView
+                            android:layout_toRightOf="@id/fabu_job_text02"
+                            android:id="@+id/text_fabu_job_xinzi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="100元/天"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CACACA"/>
+            <!-- 学历  人数-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/fabu_job_text03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="40dp"
+                            android:layout_centerVertical="true"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="学历："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                        <TextView
+                            android:id="@+id/edit_fabu_job_学历"
+                            android:layout_marginLeft="3dp"
+                            android:layout_toRightOf="@id/fabu_job_text03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="不限"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/fabu_job_text04"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="20dp"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="薪资："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                        <TextView
+                            android:id="@+id/text_fabu_job_renshu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/fabu_job_text04"
+                            android:text="不限"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CACACA"/>
+
+            <!-- 职位要求 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/fabu_job_text05"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="40dp"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="职位要求："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CACACA"/>
+
+            <!-- 职位要求 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/text_fabu_zhiwei"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="30dp"
+                                android:text="职位要求内容88888"
+                                android:textSize="18sp"
+                                android:textColor="#47484a"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!-- 工作地点 -->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:paddingLeft="40dp"
+                            android:id="@+id/fabu_job_text06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="工作地点："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                        <TextView
+                            android:layout_toRightOf="@id/fabu_job_text06"
+                            android:id="@+id/text_fabu_job_didian"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工作职业"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CACACA"/>
+
+            <!-- 工作时间 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/fabu_job_text07"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingLeft="40dp"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="工作时间："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                        <TextView
+                            android:layout_toRightOf="@id/fabu_job_text07"
+                            android:id="@+id/text_fabu_job_date"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="上午8点到下午175点"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 工作地点 -->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/fabu_job_text08"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="40dp"
+                            android:layout_centerVertical="true"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="联系人："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                        <TextView
+                            android:id="@+id/text_fabu_job_lianxiren"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="3dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/fabu_job_text08"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="苍老师"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CACACA"/>
+
+            <!-- 联系电话 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/fabu_job_text09"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="40dp"
+                            android:layout_centerVertical="true"
+                            android:drawableLeft="@drawable/shu"
+                            android:drawablePadding="8dp"
+                            android:text="联系电话："
+                            android:textSize="18sp"
+                            android:textColor="#47484a"/>
+                        <TextView
+                            android:id="@+id/text_fabu_job_phone"
+                            android:layout_marginLeft="3dp"
+                            android:layout_toRightOf="@id/fabu_job_text09"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="12312312312"
+                            android:textSize="18sp"
+                            android:textColor="#47484a" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

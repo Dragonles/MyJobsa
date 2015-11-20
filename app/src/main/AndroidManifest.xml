@@ -12,15 +12,18 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
+        <!-- 登陆页 -->
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <!-- 引导页 -->
         <activity
             android:name=".LeadActivity"
             android:label="@string/title_activity_lead"
             android:theme="@style/MyAppLeadTheme" >
         </activity>
+        <!-- 闪屏页 -->
         <activity
             android:name="com.job.utils.ShanActivity"
             android:label="@string/title_activity_shan"
@@ -31,10 +34,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 发布 招聘 详情页 -->
         <activity
             android:name=".FabuDetailsActivity"
             android:label="@string/title_activity_fabu_details"
-            android:theme="@style/MyFullscreen">
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        </activity>
+        <!-- 发布 求职 详情页 -->
+        <activity
+            android:name=".FabuJobDetailsActivity"
+            android:label="@string/title_activity_fabu_job_details"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
     </application>
 

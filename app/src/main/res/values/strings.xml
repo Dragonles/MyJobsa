@@ -15,6 +15,8 @@
     <string name="fragment_fabu_title_text">我的发布</string>
     <string name="title_activity_fabu_details">FabuDetailsActivity</string>
 
+    <!-- FabuDetailsActivity -->
+    <string name="fragment_fabu_job_title">详情</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -25,10 +27,11 @@
     <string name="job_font_go">></string>
     <string name="job_qiuzhi_zhaopin">求职/招聘</string>
     <string name="job_friends">邀请好友兼职</string>
-    <string name="job_xinyong">招聘信用</string>
+    <string name="job_xinyong">兼职收入</string>
     <string name="job_yijian">意见反馈</string>
     <string name="job_about">关于我们</string>
     <string name="loginout">退出登录</string>
     <string name="login">请登录</string>
+    <string name="title_activity_fabu_job_details">FabuJobDetailsActivity</string>
 
 </resources>
