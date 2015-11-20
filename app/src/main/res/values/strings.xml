@@ -33,6 +33,7 @@
     <string name="job_about">关于我们</string>
     <string name="loginout">退出登录</string>
     <string name="login">请登录</string>
+    <string name="title_activity_about">AboutActivity</string>
 
 
 </resources>
