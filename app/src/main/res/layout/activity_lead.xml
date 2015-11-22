@@ -2,16 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="match_parent"
     tools:context="com.job.activity.myjobs.LeadActivity">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_lead_skip"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:textColor="@color/edit_login_style"
-        android:background="@null"
-        android:text="跳过 >>"/>
     <!-- 引导页 -->
     <android.support.v4.view.ViewPager
         android:layout_width="fill_parent"
@@ -30,27 +20,36 @@
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/pager1"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:button="@null"
             android:checked="true"
-            android:background="@drawable/viewpager_radiobtn_style"/>
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/viewpager_radiobutton1_style"/>
         <RadioButton
             android:id="@+id/pager2"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:button="@null"
-            android:background="@drawable/viewpager_radiobtn_style"/>
+            android:background="@drawable/viewpager_radiobutton2_style"/>
         <RadioButton
             android:id="@+id/pager3"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:button="@null"
-            android:background="@drawable/viewpager_radiobtn_style"/>
+            android:background="@drawable/viewpager_radiobutton3_style"/>
     </RadioGroup>
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳过"
+        android:id="@+id/btn_lead_skip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@null"
+        android:textColor="#2B2B2B"/>
 
 </RelativeLayout>

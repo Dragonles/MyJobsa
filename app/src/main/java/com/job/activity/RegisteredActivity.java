@@ -10,25 +10,17 @@ import android.widget.EditText;
 public class RegisteredActivity extends Activity {
 
 
-    Button mjump,mback_login_button;
+    Button mregists_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered);
-        mjump=(Button)findViewById(R.id.regis_jump_button);
-        mback_login_button=(Button)findViewById(R.id.back_login_button);
-        mjump.setOnClickListener(new View.OnClickListener() {
+        mregists_button=(Button)findViewById(R.id.btn_regist_submit);
+        mregists_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(RegisteredActivity.this,MainActivity.class);
+                Intent intent = new Intent(RegisteredActivity.this,SetingsUserActivity.class);
                 startActivity(intent);
-                RegisteredActivity.this.finish();
-            }
-        });
-        mback_login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RegisteredActivity.this.finish();
             }
         });
     }

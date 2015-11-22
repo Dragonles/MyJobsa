@@ -1,122 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:id="@+id/r1" android:layout_height="fill_parent">
-
+    android:layout_width="fill_parent"
+    android:background="@color/login_style_color"
+    android:id="@+id/login_big_relative"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="fill_parent"
+        android:gravity="left"
+        android:id="@+id/top_linear"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:gravity="right"
-            android:id="@+id/go"
-            android:padding="5dp"
-            android:layout_height="match_parent">
-            <Button
-                android:layout_width="wrap_content"
-                android:onClick="tiaoguo"
-                android:id="@+id/regis_jump_button"
-                android:background="@null"
-                android:textColor="@color/public_font_color"
-                android:layout_height="wrap_content"
-                android:text="立即浏览"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#CCC"/>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="0dp"
-                    android:textCursorDrawable="@drawable/registe_editeext_guangbiao"
-                    android:padding="10dp"
-                    android:layout_weight="5"
-                    android:inputType="text"
-                    android:id="@+id/phonenumber"
-                    android:background="@null"
-                    android:hint="邮箱/手机号"
-                    android:layout_height="50dp" />
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="2.4"
-                    android:text="点击获取验证码"
-                    android:textColor="@color/public_font_color"
-                    android:background="@drawable/per_button_style"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#CCC"/>
-            <EditText
-                android:layout_width="fill_parent"
-                android:textCursorDrawable="@drawable/registe_editeext_guangbiao"
-                android:padding="10dp"
-                android:inputType="text"
-                android:id="@+id/username"
-                android:background="@null"
-                android:hint="验证码:"
-                android:layout_height="50dp" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#CCC"/>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/style_color"
-                android:layout_weight="5"
-                android:onClick="register"
-                android:background="@drawable/login_buttons_style"
-                android:text="注册"
-                android:id="@+id/re" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:id="@+id/btom"
-        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/back_login_button"
+            android:text="←"
+            android:textStyle="bold"
             android:background="@null"
-            android:textColor="@color/public_font_color"
-            android:onClick="back_logsin_button"
-            android:text="返回登录页面"/>
-    </RelativeLayout>
+            android:id="@+id/login_jumbp"
+            android:textColor="@color/user_font_color"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:background="#F2506F"
+            android:layout_height="1dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/top_linear"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/regist_phone_img"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:hint="请输入手机号"
+                        android:paddingLeft="10dp"
+                        android:textSize="12sp"
+                        android:inputType="phone"
+                        android:id="@+id/edit_login_name"
+                        android:background="@drawable/edit_login_select"
+                        android:textColor="#2B2B2B"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/regist_duanxin_img"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/edit_login_select"
+                        android:hint="请输入验证码"
+                        android:paddingLeft="10dp"
+                        android:inputType="number"
+                        android:id="@+id/edit_login_pwd"
+                        android:textSize="12sp"
+                        android:layout_weight="4"
+                        android:textColor="#2B2B2B"
+                        android:layout_height="match_parent"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:layout_weight="4"
+                        android:textColor="#4D4D4D"
+                        android:background="#A2EFFF"
+                        android:maxLines="1"
+                        android:text="点击获取验证码"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="注册"
+                    android:layout_weight="8"
+                    android:id="@+id/btn_regist_submit"
+                    android:textColor="@color/user_font_color"
+                    android:background="@drawable/btn_login_submit_style"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:background="@null"
+            android:text="忘记密码?"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textColor="#FFF"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即注册"
+            android:background="@null"
+            android:id="@+id/btn_login_toregister"
+            android:textColor="#FFF"/>
+    </LinearLayout>
 </RelativeLayout>

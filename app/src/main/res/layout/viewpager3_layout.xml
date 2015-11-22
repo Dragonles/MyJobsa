@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/thread">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/viewparger_three">
 
-    <!-- 页面三 -->
-    <Button
-        android:id="@+id/btn_lead_viewpager_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:layout_marginBottom="140dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
-        android:textColor="@color/edit_login_style"
-        android:text="一起兼职吧" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_lead_viewpager_start"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:background="@drawable/letsgo"
+            android:textColor="@color/edit_login_style"
+            />
+    </LinearLayout>
+    <!-- 页面三 -->
+
 </RelativeLayout>
