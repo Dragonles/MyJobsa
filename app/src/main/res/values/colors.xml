@@ -9,7 +9,9 @@
     <color name="fragment_fabu_title">#28BBBD</color>
     <color name="fragment_fabu_title_text_coler">#fff</color>
 
-
+    <!-- FabuDetailsActivity -->
+    <color name="fabudetailsActivity_fabua_background">#F5F5F5</color>
+    <color name="fabudetailsActivity_fabua_neirong_background">#FFFFFF</color>
 
     <color name="style_color">#29BABD</color>
     <color name="user_font_color">#FFFFFF</color>

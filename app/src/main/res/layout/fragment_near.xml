@@ -50,13 +50,12 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/rly_map">
 
-        <ListView
+        <com.job.utils.ListViewForScrollView
             android:id="@+id/lv"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
-        </ListView>
+        </com.job.utils.ListViewForScrollView>
     </ScrollView>
 
 </RelativeLayout>
