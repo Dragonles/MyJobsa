@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#00ff00ff"/>
+    <solid android:color="#CCC"/>
     <corners android:radius="100px"/>
     <stroke android:color="@color/edit_login_style"
         android:width="2px"
