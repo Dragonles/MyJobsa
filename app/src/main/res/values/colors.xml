@@ -22,4 +22,5 @@
     <color name="home_hot_cebian">#8E8F8F</color>
     <color name="dark">#ffffff</color>
     <color name="light">#FFEEEEEE</color>
+    <color name="login_style_color">#7FDADB</color>
 </resources>
