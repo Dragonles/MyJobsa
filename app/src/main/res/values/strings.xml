@@ -7,6 +7,8 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_lead">LeadActivity</string>
+    <string name="title_activity_fabu_job_details">FabuJobDetailsActivity</string>
+    <string name="title_activity_dingwei">DingweiActivity</string>
 
     <string name="title_activity_shan">兼职吧!</string>
 
@@ -14,6 +16,8 @@
     <string name="fragment_fabu_title">选择发布类型</string>
     <string name="fragment_fabu_title_text">我的发布</string>
     <string name="title_activity_fabu_details">FabuDetailsActivity</string>
+
+    <string name="fragment_fabu_job_title">详细</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->
