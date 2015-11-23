@@ -42,8 +42,7 @@ public class HomehotAdpter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        if(convertView == null)
-        {
+        if(convertView == null) {
             holder= new ViewHolder();
             convertView=LayoutInflater.from(context).inflate(R.layout.home_hot_item,null);
             holder.hot_item_title=(TextView)convertView.findViewById(R.id.hot_item_title);
@@ -59,8 +58,7 @@ public class HomehotAdpter extends BaseAdapter{
         holder.hot_item_address.setText(mhot_list.get(position).getHot_address());
         return convertView;
     }
-    class ViewHolder
-    {
+    class ViewHolder {
 
         public TextView hot_item_title;
         public TextView hot_item_money;

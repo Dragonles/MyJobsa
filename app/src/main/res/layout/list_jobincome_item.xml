@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_job_type"
+            android:text="类型"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:id="@+id/textView" />
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_job_jobs"
+            android:text="服务员"
             android:id="@+id/text_jobincome_type"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView" />
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_job_require"
+            android:text="要求地址："
             android:layout_marginTop="5dp"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
@@ -44,7 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_job_district"
+            android:text="兰山区"
             android:id="@+id/text_jobincome_district"
             android:layout_alignBaseline="@+id/textView4"
             android:layout_alignBottom="@+id/textView4"
@@ -65,7 +65,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_job_compensation"
+            android:text="薪资："
             android:id="@+id/textView3"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/text_jobincome_money"
@@ -74,7 +74,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_job_money"
+            android:text="3000元/月"
             android:id="@+id/text_jobincome_money"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
