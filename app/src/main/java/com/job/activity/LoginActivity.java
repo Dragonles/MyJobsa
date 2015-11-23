@@ -1,6 +1,7 @@
 package com.job.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,6 +53,8 @@ public class LoginActivity extends Activity {
         btn_login_toregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,RegisteredActivity.class);
+                startActivity(intent);
                 Toast.makeText(LoginActivity.this,"点击了立即注册！",Toast.LENGTH_SHORT).show();
             }
         });
