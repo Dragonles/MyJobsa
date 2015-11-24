@@ -49,6 +49,7 @@
     <string name="text_job_district">兰山区内</string>
     <string name="text_job_compensation">薪资：</string>
     <string name="text_job_money">3000/月</string>
+    <string name="title_activity_update_information">UpdateInformationActivity</string>
 
 
 </resources>

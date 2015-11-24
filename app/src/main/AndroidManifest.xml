@@ -53,6 +53,10 @@
             android:name=".DingweiActivity"
             android:label="@string/title_activity_dingwei" >
         </activity>
+        <activity
+            android:name=".UpdateInformationActivity"
+            android:label="@string/title_activity_update_information" >
+        </activity>
     </application>
 
 </manifest>
