@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_fabu_title"
-
+                android:textSize="20sp"
                 android:textColor="@color/fragment_fabu_title_text_coler"
                 android:layout_centerInParent="true"/>
             <TextView

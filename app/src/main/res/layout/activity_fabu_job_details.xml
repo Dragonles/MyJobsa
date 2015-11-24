@@ -12,20 +12,22 @@
         android:layout_alignParentTop="true"
         android:background="@color/fragment_fabu_title">
 
-        <ImageView
+        <TextView
             android:id="@+id/fabuactivity_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/back"/>
+            android:text="＜"
+            android:textSize="30sp"
+            android:textColor="#FFF"/>
         <TextView
             android:id="@+id/fragment_fabu_title01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_fabu_job_title"
-            android:textSize="@dimen/fragment_fabu_title_text"
+            android:textSize="20sp"
             android:textColor="@color/fragment_fabu_title_text_coler"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
@@ -53,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
                 android:text="电话交谈"
+                android:textColor="#FFF"
                 android:background="@drawable/btn_background_icon_login"/>
             <Button
                 android:layout_weight="1"
@@ -61,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="我要应聘"
+                android:textColor="#FFF"
                 android:background="@drawable/btn_background_icon_login"/>
         </LinearLayout>
     </RelativeLayout>
@@ -434,11 +438,10 @@
                             android:textColor="#47484a"/>
                         <TextView
                             android:id="@+id/text_fabu_job_lianxiren"
-                            android:layout_gravity="center"
                             android:layout_marginLeft="3dp"
-                            android:layout_centerVertical="true"
                             android:layout_toRightOf="@id/fabu_job_text08"
-                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="苍老师"
                             android:textSize="18sp"
@@ -446,13 +449,6 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-                </LinearLayout>
             </LinearLayout>
 
             <View
