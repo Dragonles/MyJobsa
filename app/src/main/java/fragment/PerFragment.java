@@ -2,6 +2,7 @@ package fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.job.activity.AboutWeActivity;
 import com.job.activity.R;
 
 
@@ -29,6 +31,7 @@ public class PerFragment extends Fragment {
     private CheckBox checkBox;      //模式切换按钮
     Button btn_renzheng;            //认证按钮
     TextView txt_jianzhilishi,txt_yaoqing,txt_zhaopin;      //兼职历史    邀请好友    招聘信用
+    TextView tv_about;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class PerFragment extends Fragment {
         txt_yaoqing = (TextView) v.findViewById(R.id.txt_yaoqing);
         txt_zhaopin = (TextView) v.findViewById(R.id.txt_zhaopin);
         checkBox = (CheckBox) v.findViewById(R.id.mode);
+        tv_about = (TextView) v.findViewById(R.id.tv_about);
 
         //传递数据
         final SharedPreferences sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
@@ -77,6 +81,14 @@ public class PerFragment extends Fragment {
                     editor.commit();
                     Log.i("CheckBoxPer", sp.getBoolean("type",true)+"");
                 }
+            }
+        });
+
+        tv_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AboutWeActivity.class);
+                startActivity(intent);
             }
         });
 
