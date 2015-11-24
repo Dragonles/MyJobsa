@@ -21,6 +21,7 @@ import com.amap.api.location.AMapLocationListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cn.bmob.v3.BmobUser;
 import fragment.FabuFragment;
 import fragment.HomeFragment;
 import fragment.NearFragment;
@@ -64,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             HomeFragment pf = new HomeFragment();
             ftt.add(R.id.fragment_parent, pf, "home");
             ftt.commit();
+        }
+        BmobUser bmobUser = BmobUser.getCurrentUser(MainActivity.this);
+        if(bmobUser != null){
+            // 允许用户使用应用
+        }else{
+            //缓存用户对象为空时， 可打开用户注册界面…
         }
     }
 
