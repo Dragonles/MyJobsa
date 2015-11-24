@@ -53,19 +53,9 @@
             android:name=".DingweiActivity"
             android:label="@string/title_activity_dingwei" >
         </activity>
-        <!-- 注册页 -->
         <activity
-            android:name=".RegisteredActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        </activity>
-        <!-- 关于我们页 -->
-        <activity
-            android:name=".AboutWeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".TiaokuanActivity"
-            android:label="@string/title_activity_tiaokuan" >
+            android:name=".UpdateInformationActivity"
+            android:label="@string/title_activity_update_information" >
         </activity>
     </application>
 

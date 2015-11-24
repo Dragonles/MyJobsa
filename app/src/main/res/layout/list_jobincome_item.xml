@@ -9,18 +9,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/relativeLayout"
         android:background="#FFF"
-        android:layout_marginBottom="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:layout_marginBottom="10dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_job_type"
+            android:textSize="12sp"
             android:textColor="@color/public_font_color"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_alignParentLeft="true"
             android:id="@+id/textView" />
 
@@ -28,26 +27,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_job_jobs"
+            android:textSize="12sp"
             android:textColor="@color/public_font_color"
             android:id="@+id/text_jobincome_type"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/textView" />
+            android:layout_above="@+id/textView4"
+            android:layout_toRightOf="@+id/textView"
+            android:layout_toEndOf="@+id/textView" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_job_require"
+            android:textSize="12sp"
             android:textColor="@color/public_font_color"
-            android:layout_marginTop="5dp"
+            android:id="@+id/textView4"
+            android:layout_marginBottom="10dp"
             android:layout_below="@+id/textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/textView4" />
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_job_district"
+            android:textSize="12sp"
             android:textColor="@color/public_font_color"
             android:id="@+id/text_jobincome_district"
             android:layout_alignBaseline="@+id/textView4"
@@ -61,15 +64,16 @@
             android:background="@color/public_font_color"
             android:id="@+id/textView2"
             android:layout_marginRight="20dp"
-            android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/textView3"
             android:layout_alignBottom="@+id/text_jobincome_district"
-            android:layout_toLeftOf="@+id/textView3" />
+            android:layout_toLeftOf="@+id/textView3"
+            android:layout_alignTop="@+id/text_jobincome_type" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_job_compensation"
+            android:textSize="12sp"
             android:textColor="@color/public_font_color"
             android:id="@+id/textView3"
             android:layout_centerVertical="true"
@@ -80,8 +84,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_job_money"
+            android:textSize="12sp"
             android:textColor="@color/public_font_color"
             android:id="@+id/text_jobincome_money"
+            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
