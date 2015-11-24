@@ -63,9 +63,15 @@
             android:name=".AboutWeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
+        <!-- 隐私条款 -->
         <activity
             android:name=".TiaokuanActivity"
             android:label="@string/title_activity_tiaokuan" >
+        </activity>
+        <!-- 搜索页 -->
+        <activity android:name=".LocationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         </activity>
     </application>
 
