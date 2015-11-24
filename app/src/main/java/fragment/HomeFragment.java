@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.job.activity.AllClassActivity;
+import com.job.activity.CircleImageView;
 import com.job.activity.R;
 import com.job.adapter.HomehotAdpter;
 import com.job.adapter.HomejiajiAdpter;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     List<Home_hot_item> mhot_list = new ArrayList<>();
     List<Home_jiaji_item> mjiaji_list = new ArrayList<>();
     ListView mhot_listview,mjiaji_listview;
+
     Button mmore;
     private GridView mgv;
     public HomeFragment() {

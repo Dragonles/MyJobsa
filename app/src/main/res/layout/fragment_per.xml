@@ -28,14 +28,16 @@
                         android:orientation="vertical"
                         android:layout_height="wrap_content">
                         <com.job.activity.CircleImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/user_img"
                             android:src="@drawable/user_head"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/username"
                             android:textSize="14sp"
+                            android:id="@+id/username"
                             android:textColor="@color/user_font_color"
                             />
                     </LinearLayout>
@@ -425,6 +427,7 @@
                                <Button
                                    android:layout_width="200dp"
                                    android:text="@string/login"
+                                   android:id="@+id/login_outs"
                                    android:background="@drawable/per_submit_style"
                                    android:textColor="@color/user_font_color"
                                    android:layout_height="wrap_content" />
