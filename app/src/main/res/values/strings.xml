@@ -9,6 +9,7 @@
     <string name="title_activity_lead">LeadActivity</string>
     <string name="title_activity_fabu_job_details">FabuJobDetailsActivity</string>
     <string name="title_activity_dingwei">DingweiActivity</string>
+    <string name="title_activity_update_information">UpdateInformationActivity</string>
 
     <string name="title_activity_shan">兼职吧!</string>
 
