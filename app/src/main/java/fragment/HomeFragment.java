@@ -44,7 +44,7 @@ import java.util.logging.LogRecord;
 
 /**
  * 主页框架
- * A simple {@link Fragment} subclass.
+ * A simple {@link } subclass.
  */
 public class HomeFragment extends Fragment {
 
