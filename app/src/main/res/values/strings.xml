@@ -7,16 +7,17 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_lead">LeadActivity</string>
+    <string name="title_activity_fabu_job_details">FabuJobDetailsActivity</string>
+    <string name="title_activity_dingwei">DingweiActivity</string>
 
-    <string name="title_activity_select">SelectActivity</string>
-
-
-    <string name="title_activity_shan">ShanActivity</string>
+    <string name="title_activity_shan">兼职吧!</string>
 
     <!-- fragment_fabu_layout -->
     <string name="fragment_fabu_title">选择发布类型</string>
     <string name="fragment_fabu_title_text">我的发布</string>
     <string name="title_activity_fabu_details">FabuDetailsActivity</string>
+
+    <string name="fragment_fabu_job_title">详细</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->
@@ -26,6 +27,7 @@
     <string name="user_renzheng">认证</string>
     <string name="job_history">兼职历史</string>
     <string name="job_font_go">></string>
+    <string name="back"><b><i></i></b></string>
     <string name="job_qiuzhi_zhaopin">求职/招聘</string>
     <string name="job_friends">邀请好友兼职</string>
     <string name="job_xinyong">招聘信用</string>
@@ -33,10 +35,11 @@
     <string name="job_about">关于我们</string>
     <string name="loginout">退出登录</string>
     <string name="login">请登录</string>
-    <string name="title_activity_creat_jianli">CreatJianliActivity</string>
-    <string name="title_activity_about_we">AboutWeActivity</string>
-    <string name="title_activity_job_shouru">JobShouruActivity</string>
-
+    <string name="login_app_name">兼职吧!</string>
+    <string name="login_regist_name">注册兼职吧账号</string>
+    <string name="all_class_font">所有分类</string>
+    <string name="title_activity_all_class">AllClassActivity</string>
+    <string name="title_activity_setings_user">SetingsUserActivity</string>
 
     <!-- job income strings -->
 
@@ -46,6 +49,7 @@
     <string name="text_job_district">兰山区内</string>
     <string name="text_job_compensation">薪资：</string>
     <string name="text_job_money">3000/月</string>
+    <string name="title_activity_tiaokuan">TiaokuanActivity</string>
 
 
 </resources>

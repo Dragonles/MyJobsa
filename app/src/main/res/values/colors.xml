@@ -9,7 +9,9 @@
     <color name="fragment_fabu_title">#28BBBD</color>
     <color name="fragment_fabu_title_text_coler">#fff</color>
 
-
+    <!-- FabuDetailsActivity -->
+    <color name="fabudetailsActivity_fabua_background">#F5F5F5</color>
+    <color name="fabudetailsActivity_fabua_neirong_background">#FFFFFF</color>
 
     <color name="style_color">#29BABD</color>
     <color name="user_font_color">#FFFFFF</color>
@@ -17,5 +19,8 @@
     <color name="public_background_color">#F5F4F4</color>
     <color name="public_liner_color">#DDDDDD</color>
     <color name="loginout_button_color">#FF0000</color>
-
+    <color name="home_hot_cebian">#8E8F8F</color>
+    <color name="dark">#ffffff</color>
+    <color name="light">#FFEEEEEE</color>
+    <color name="login_style_color">#7FDADB</color>
 </resources>

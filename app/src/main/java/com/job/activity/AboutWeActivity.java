@@ -7,13 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import fragment.PerFragment;
 
 public class AboutWeActivity extends AppCompatActivity {
 
-    public Button btn_gengxin,btn_gongneng,btn_help,btn_tuichu,ib_back;
+    public Button btn_gengxin,btn_gongneng,btn_help,btn_tuichu;
+    public ImageButton ib_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class AboutWeActivity extends AppCompatActivity {
         btn_gongneng = (Button) findViewById(R.id.btn_gongneng);
         btn_help = (Button) findViewById(R.id.btn_help);
         btn_tuichu = (Button) findViewById(R.id.btn_tuichu);
-        ib_back = (Button) findViewById(R.id.ib_back);
+        ib_back = (ImageButton) findViewById(R.id.ib_back);
 
         btn_gengxin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +40,7 @@ public class AboutWeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(AboutWeActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -45,6 +48,7 @@ public class AboutWeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(AboutWeActivity.this, "请在使用中自行摸索", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -52,7 +56,7 @@ public class AboutWeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                AboutWeActivity.this.finish();
             }
         });
 
@@ -60,8 +64,7 @@ public class AboutWeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(AboutWeActivity.this, PerFragment.class);
-                startActivity(intent);
+                AboutWeActivity.this.finish();
             }
         });
 

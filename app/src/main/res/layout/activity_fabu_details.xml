@@ -2,22 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fabudetailsActivity_fabua_background"
     tools:context="com.job.activity.FabuDetailsActivity">
 
     <RelativeLayout
-        android:id="@+id/fragment_fabu_top"
+        android:id="@+id/fabuactivity_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
         android:background="@color/fragment_fabu_title">
 
+        <ImageView
+            android:id="@+id/fabuactivity_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/back"/>
         <TextView
             android:id="@+id/fragment_fabu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_fabu_title"
-            android:textSize="@dimen/fragment_fabu_title_text"
+
             android:textColor="@color/fragment_fabu_title_text_coler"
             android:layout_centerInParent="true"/>
 
@@ -28,12 +36,291 @@
             android:layout_marginRight="8dp"
             android:textColor="@color/fragment_fabu_title_text_coler"
             android:text="@string/fragment_fabu_title_text"
-            android:textSize="@dimen/fragment_fabu_title_text01"
+
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/fabuactivity_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/fabudetailsActivity_fabua_neirong_background">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布招聘"
+            android:textColor="@color/fragment_fabu_title_text_coler"
 
+            android:background="@drawable/edittext_search_background"/>
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_below="@id/fabuactivity_top"
+        android:layout_above="@id/fabuactivity_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- text  工作地点  工作时间 -->
+            <RelativeLayout
+                android:id="@+id/rel_fabu01"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/fabuactivity_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+
+                <LinearLayout
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_gzdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="10dp"
+                        android:paddingLeft="20dp"
+                        android:layout_gravity="center"
+                        android:text="工作地点："
+                        android:textSize="22sp"
+                        android:textColor="#47484a"/>
+                    <EditText
+                        android:id="@+id/edit_fabu_job_didian"
+                        android:layout_gravity="center"
+                        android:background="@drawable/edit_shape"
+                        android:layout_marginLeft="3dp"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:hint="  请输入工作地点"
+                        android:layout_toRightOf="@id/text_gzdd"/>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view01"
+                    android:layout_below="@id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CACACA"/>
+
+                <LinearLayout
+                    android:id="@+id/line2"
+                    android:layout_below="@id/view01"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_job_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="10dp"
+                        android:paddingLeft="20dp"
+                        android:layout_gravity="center"
+                        android:text="工作时间："
+                        android:textSize="22sp"
+                        android:textColor="#47484a"/>
+                    <EditText
+                        android:id="@+id/edit_fabu_job_date"
+                        android:layout_marginLeft="3dp"
+                        android:layout_width="180dp"
+                        android:background="@drawable/edit_shape"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="  请输入工作时间"
+                        android:layout_toRightOf="@id/text_gzdd"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- text  工作详情  工作要求 -->
+            <RelativeLayout
+                android:id="@+id/rel_fabu02"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/rel_fabu01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/fabudetailsActivity_fabua_neirong_background">
+
+                <LinearLayout
+                    android:id="@+id/rel_line01"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <TextView
+                        android:id="@+id/text_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="10dp"
+                        android:layout_gravity="center"
+                        android:text="工作详情："
+                        android:textSize="22sp"
+                        android:textColor="#47484a"
+                        android:layout_toLeftOf="@id/edit_fabu_job_date"
+                        android:paddingLeft="20dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view02"
+                    android:layout_below="@id/rel_line01"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CACACA"/>
+                <!-- 职位、薪资 -->
+                <LinearLayout
+                    android:id="@+id/rel_line01_details01"
+                    android:layout_below="@id/view02"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_details01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="5dp"
+                        android:text="职位："
+                        android:textSize="22sp"
+                        android:textColor="#47484a" />
+                    <EditText
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edit_fabu_job_zhiwei"
+                        android:background="@drawable/edit_shape"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@id/text_details01"/>
+                    <!-- 薪资 -->
+                    <TextView
+                        android:id="@+id/text_details05"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="5dp"
+                        android:text="薪资："
+                        android:textSize="22sp"
+                        android:textColor="#47484a" />
+                    <EditText
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_shape"
+                        android:id="@+id/edit_fabu_job_xinzi"
+                        android:layout_marginLeft="3dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view03"
+                    android:layout_below="@id/rel_line01_details01"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CACACA"/>
+
+                <!-- 学历、人数-->
+                <LinearLayout
+                    android:id="@+id/rel_line01_details02"
+                    android:layout_below="@id/rel_line01_details01"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <!-- 学历 -->
+                    <TextView
+                        android:id="@+id/text_details03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="5dp"
+                        android:text="学历："
+                        android:textSize="22sp"
+                        android:textColor="#47484a" />
+                    <EditText
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edit_fabu_job_xueli"
+                        android:background="@drawable/edit_shape"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@id/text_details01"/>
+                    <!-- 人数 -->
+                    <TextView
+                        android:id="@+id/text_details02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="5dp"
+                        android:text="人数："
+                        android:textSize="22sp"
+                        android:textColor="#47484a" />
+                    <EditText
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edit_fabu_job_renshu"
+                        android:background="@drawable/edit_shape"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@id/text_details02"/>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view04"
+                    android:layout_below="@id/rel_line01_details02"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CACACA"/>
+
+                <!-- 工作要求 -->
+                <LinearLayout
+                    android:id="@+id/rel_line02"
+                    android:layout_below="@id/view04"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <TextView
+                        android:id="@+id/text_yaoqiu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/shu"
+                        android:drawablePadding="10dp"
+                        android:layout_gravity="center"
+                        android:text="工作要求："
+                        android:textSize="22sp"
+                        android:textColor="#47484a"
+                        android:layout_toLeftOf="@id/edit_fabu_job_date"
+                        android:paddingLeft="20dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view05"
+                    android:layout_below="@id/rel_line02"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#CACACA"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/view05">
+                    <EditText
+                        android:id="@+id/edit_fabu_job_yaoqiu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/edit_shape"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="5dp"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
