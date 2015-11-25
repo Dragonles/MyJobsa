@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.job.activity.AboutWeActivity;
+import com.job.activity.MainActivity;
 import com.job.activity.R;
 
 
@@ -32,6 +34,7 @@ public class PerFragment extends Fragment {
     Button btn_renzheng;            //认证按钮
     TextView txt_jianzhilishi,txt_yaoqing,txt_zhaopin;      //兼职历史    邀请好友    招聘信用
     TextView tv_about;
+    ImageView iv_job_xinyong_img,iv_job_friends_img,iv_job_history_img;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,7 +45,9 @@ public class PerFragment extends Fragment {
         txt_zhaopin = (TextView) v.findViewById(R.id.txt_zhaopin);
         checkBox = (CheckBox) v.findViewById(R.id.mode);
         tv_about = (TextView) v.findViewById(R.id.tv_about);
-
+        iv_job_xinyong_img = (ImageView) v.findViewById(R.id.job_xinyong_img);
+        iv_job_friends_img = (ImageView) v.findViewById(R.id.job_friends_img);
+        iv_job_history_img = (ImageView) v.findViewById(R.id.job_history_img);
         //传递数据
         final SharedPreferences sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
 
@@ -61,6 +66,13 @@ public class PerFragment extends Fragment {
                     txt_yaoqing.setText("招聘历史");
                     txt_zhaopin.setText("招聘信用");
                     btn_renzheng.setVisibility(View.VISIBLE);
+                    iv_job_xinyong_img.setBackgroundResource(R.drawable.button_credit);
+                    iv_job_friends_img.setBackgroundResource(R.drawable.button_jobhistory);
+                    iv_job_history_img.setBackgroundResource(R.drawable.button_releasehistory);
+//                    iv_job_xinyong_img.setImageResource(R.drawable.button_credit);
+//                    iv_job_friends_img.setImageResource(R.drawable.button_jobhistory);
+//                    iv_job_history_img.setImageResource(R.drawable.button_releasehistory);
+
                     //传递数据
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putBoolean("type",false);
@@ -74,6 +86,12 @@ public class PerFragment extends Fragment {
                     txt_yaoqing.setText("邀请好友兼职");
                     txt_zhaopin.setText("兼职收入");
                     btn_renzheng.setVisibility(View.GONE);
+                    iv_job_xinyong_img.setBackgroundResource(R.drawable.button_money);
+                    iv_job_friends_img.setBackgroundResource(R.drawable.button_friends);
+                    iv_job_history_img.setBackgroundResource(R.drawable.button_releasehistory);
+//                    iv_job_xinyong_img.setImageResource(R.drawable.button_money);
+//                    iv_job_friends_img.setImageResource(R.drawable.button_friends);
+//                    iv_job_history_img.setImageResource(R.drawable.button_releasehistory);
 
                     //传递数据
                     SharedPreferences.Editor editor = sp.edit();
