@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
+    android:orientation="vertical"
     tools:context="com.text.broad.nearapplication.NearFragmet">
 
     <RelativeLayout
@@ -9,19 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#29BABD">
-
-
-
-        <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="< 返回"-->
-        <!--android:textSize="20sp"-->
-        <!--android:textColor="#fff"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:background="@null"-->
-        <!--android:gravity="left|center"-->
-        <!--android:paddingLeft="10dp"/>-->
 
         <TextView
             android:layout_centerHorizontal="true"
@@ -34,28 +22,42 @@
             android:paddingBottom="10dp"/>
 
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rly_map"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rly_top">
-        <ImageButton
-            android:layout_width="fill_parent"
-            android:layout_height="130dp"
-            android:background="@drawable/maps" />
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rly_map">
+        android:orientation="vertical">
 
-        <com.job.utils.ListViewForScrollView
-            android:id="@+id/lv"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/rly_map"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/rly_top">
+            <com.amap.api.maps.MapView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </com.amap.api.maps.MapView>
+        </LinearLayout>
 
-        </com.job.utils.ListViewForScrollView>
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-</RelativeLayout>
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rly_map">
+
+                <com.job.utils.ListViewForScrollView
+                    android:id="@+id/lv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+
+                </com.job.utils.ListViewForScrollView>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -44,9 +44,10 @@ public class NearFragmentAdapter extends BaseAdapter {
         if(convertView == null) {
             vh= new ViewHolder();
             convertView=LayoutInflater.from(context).inflate(R.layout.fragment_near_adapter_layout,null);
-            vh.edit_near_job_zhiye=(TextView)convertView.findViewById(R.id.edit_near_job_zhiye);
-            vh.edit_near_job_diqu=(TextView)convertView.findViewById(R.id.edit_near_job_diqu);
-            vh.edit_near_job_xinzi=(TextView)convertView.findViewById(R.id.edit_near_job_xinzi);
+            vh.text_near_distance=(TextView)convertView.findViewById(R.id.text_near_distance);
+            vh.text_near_placename=(TextView)convertView.findViewById(R.id.text_near_placename);
+            vh.text_near_jobnead=(TextView)convertView.findViewById(R.id.text_near_jobnead);
+            vh.text_near_money=(TextView)convertView.findViewById(R.id.text_near_money);
             convertView.setTag(vh);
         }
         else {
@@ -56,7 +57,7 @@ public class NearFragmentAdapter extends BaseAdapter {
         return convertView;
     }
     class ViewHolder {
-        public TextView edit_near_job_zhiye,edit_near_job_diqu,edit_near_job_xinzi;
+        public TextView text_near_distance,text_near_placename,text_near_jobnead,text_near_money;
     }
 
 }

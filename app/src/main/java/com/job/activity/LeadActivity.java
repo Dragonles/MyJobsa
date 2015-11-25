@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobUser;
 
 /**
  * LeadActivity  引导页
@@ -26,6 +29,8 @@ public class LeadActivity extends Activity {
     RadioButton radiobtn_lead_pager1, radiobtn_lead_pager2, radiobtn_lead_pager3;
     ViewPager view_lead_viewpager;
     List<View> list_lead_view = new ArrayList<>();
+    Button mstart;
+    TextView tt;
     List<RadioButton> list_lead_radiobtn = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public class LeadActivity extends Activity {
         View v1 = LayoutInflater.from(this).inflate(R.layout.viewpager1_layout,null);
         View v2 = LayoutInflater.from(this).inflate(R.layout.viewpager2_layout,null);
         View v3 = LayoutInflater.from(this).inflate(R.layout.viewpager3_layout,null);
+        mstart=(Button)findViewById(R.id.btn_lead_viewpager_start);
         list_lead_view.add(v1);
         list_lead_view.add(v2);
         list_lead_view.add(v3);
@@ -44,6 +50,20 @@ public class LeadActivity extends Activity {
         list_lead_radiobtn.add(radiobtn_lead_pager1);
         list_lead_radiobtn.add(radiobtn_lead_pager2);
         list_lead_radiobtn.add(radiobtn_lead_pager3);
+        tt=(TextView)findViewById(R.id.tt1);
+        tt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        BmobUser bmobUser = BmobUser.getCurrentUser(LeadActivity.this);
+        if(bmobUser != null){
+            Intent intent = new Intent(LeadActivity.this, MainActivity.class);
+            LeadActivity.this.finish();
+            startActivity(intent);
+        }else{
+            //缓存用户对象为空时， 可打开用户注册界面…
+        }
         view_lead_viewpager.setAdapter(new MyViewPagerAdapter());
         view_lead_viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -64,6 +84,7 @@ public class LeadActivity extends Activity {
         ((Button)v3.findViewById(R.id.btn_lead_viewpager_start)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//
                 Intent intent = new Intent(LeadActivity.this, LoginActivity.class);
                 startActivity(intent);
                 LeadActivity.this.finish();

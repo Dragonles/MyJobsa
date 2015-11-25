@@ -14,16 +14,16 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <TextView
-            android:id="@+id/tv_back"
+        <ImageButton
+            android:id="@+id/ib_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@drawable/back"
-            android:textSize="22sp"
             android:textColor="#fff"
             android:paddingRight="20dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:paddingTop="25dp"/>
 
 
         <EditText
@@ -33,11 +33,13 @@
             android:paddingLeft="35dp"
             android:paddingRight="5dp"
             android:paddingTop="5dp"
-            android:layout_alignBottom="@+id/tv_back"
-            android:layout_toRightOf="@+id/tv_back"
+            android:layout_alignBottom="@+id/ib_back"
+            android:layout_toRightOf="@+id/ib_back"
             android:id="@+id/editText"
             android:layout_toLeftOf="@+id/btn_linyi"
             android:layout_toStartOf="@+id/btn_linyi"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
             android:hint="请输入搜索类型"
             />
 
@@ -49,8 +51,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="1dp"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/tv_back"
-            android:layout_toEndOf="@+id/tv_back"
+            android:layout_toRightOf="@+id/ib_back"
+            android:layout_toEndOf="@+id/ib_back"
             />
         <Button
             android:id="@+id/btn_linyi"
@@ -92,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="按地区排序"
+            android:text="按地区查看"
             android:background="@drawable/location_style"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"/>

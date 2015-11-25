@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * 发布详情页
@@ -18,12 +19,12 @@ public class FabuDetailsActivity extends AppCompatActivity {
     /**
      * onCreate方法
      * */
-    ImageView back;
+    TextView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fabu_details);
-        back = (ImageView) findViewById(R.id.fabuactivity_back);
+        back = (TextView) findViewById(R.id.fabuactivity_back);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

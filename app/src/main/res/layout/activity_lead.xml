@@ -10,6 +10,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:id="@+id/tt1"/>
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -45,7 +50,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="跳过"
+        android:text="马上浏览"
         android:id="@+id/btn_lead_skip"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"

@@ -2,9 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.job.activity" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -51,28 +58,38 @@
         </activity>
         <activity
             android:name=".DingweiActivity"
-            android:label="@string/title_activity_dingwei" >
+            android:label="@string/title_activity_dingwei"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
-        <!-- 注册页 -->
         <activity
             android:name=".RegisteredActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        </activity>
-        <!-- 关于我们页 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".AboutWeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:name=".SetingsUserActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="me.nereo.imagechoose.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".CompanyProve"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="@string/title_activity_company_prove" >
         </activity>
         <!-- 隐私条款 -->
         <activity
-            android:name=".TiaokuanActivity"
-            android:label="@string/title_activity_tiaokuan" >
+            android:name=".UpdateInformationActivity"
+            android:label="@string/title_activity_update_information" >
         </activity>
         <!-- 搜索页 -->
         <activity android:name=".LocationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
+        <!-- 关于我们 -->
+        <activity android:name=".AboutWeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+
     </application>
 
 </manifest>
