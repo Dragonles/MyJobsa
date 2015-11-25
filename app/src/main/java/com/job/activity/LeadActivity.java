@@ -1,7 +1,6 @@
 package com.job.activity;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.app.Activity;
@@ -55,12 +54,6 @@ public class LeadActivity extends Activity {
         tt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(tt, "connection error", Snackbar.LENGTH_LONG).setAction("retry", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tt.setText("aleady click snackbar");
-                    }
-                }).show();
             }
         });
         BmobUser bmobUser = BmobUser.getCurrentUser(LeadActivity.this);

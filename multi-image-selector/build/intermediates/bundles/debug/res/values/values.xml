@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/E:/android/androidstudio/MyProjects/Job/multi-image-selector/src/main/res/values/dimens.xml -->
+    <!-- From: file:/D:/14open/PAT/Jobs/multi-image-selector/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="folder_cover_size">72dp</dimen>
     <dimen name="image_size">120dp</dimen>
     <dimen name="space_size">2dp</dimen>
-    <!-- From: file:/E:/android/androidstudio/MyProjects/Job/multi-image-selector/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/14open/PAT/Jobs/multi-image-selector/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">multi-image-selector</string>
     <string name="folder_all">All Images</string>
