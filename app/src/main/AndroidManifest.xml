@@ -3,17 +3,28 @@
     package="com.job.activity" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+     
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <service android:name="com.amap.api.location.APSService"></service>
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="e45ff2b4e8f52bb70c596cd23d3363ab" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -71,24 +82,15 @@
             android:name="me.nereo.imagechoose.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".CompanyProve"
+            android:name=".CompanyProveActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/title_activity_company_prove" >
         </activity>
-        <!-- 隐私条款 -->
         <activity
             android:name=".UpdateInformationActivity"
             android:label="@string/title_activity_update_information" >
         </activity>
-        <!-- 搜索页 -->
-        <activity android:name=".LocationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        </activity>
-        <!-- 关于我们 -->
-        <activity android:name=".AboutWeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
 
     </application>
 

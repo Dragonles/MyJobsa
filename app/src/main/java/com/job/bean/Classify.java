@@ -1,29 +1,13 @@
 package com.job.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
- * Created by Alter on 2015/11/24.
+ * Created by Administrator on 2015/11/24.
  */
-public class Classify {
+public class Classify extends BmobObject {
 
-
-    public int classify_id;
-    public String classify_name;
-
-    public Classify(){
-
-    }
-    public Classify(int classify_id, String classify_name){
-        this.classify_id = classify_id;
-        this.classify_name = classify_name;
-    }
-
-    public int getClassify_id() {
-        return classify_id;
-    }
-
-    public void setClassify_id(int classify_id) {
-        this.classify_id = classify_id;
-    }
+    private String classify_name;
 
     public String getClassify_name() {
         return classify_name;
@@ -33,11 +17,7 @@ public class Classify {
         this.classify_name = classify_name;
     }
 
-    @Override
-    public String toString() {
-        return "Classify{" +
-                "classify_id=" + classify_id +
-                ", classify_name='" + classify_name + '\'' +
-                '}';
+    public Classify(String classify_name) {
+        this.classify_name = classify_name;
     }
 }

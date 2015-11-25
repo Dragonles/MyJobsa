@@ -60,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:id="@+id/qiandaoimg"
                     android:layout_toRightOf="@id/home_font_qiandao"
                     android:background="@drawable/conversation_needhandle_icon_normal"/>
             </RelativeLayout>
