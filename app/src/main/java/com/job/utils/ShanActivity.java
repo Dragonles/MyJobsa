@@ -25,8 +25,9 @@ public class ShanActivity extends AppCompatActivity {
         BmobUser bmobUser = BmobUser.getCurrentUser(ShanActivity.this);
         if(bmobUser != null){
             Intent intent = new Intent(ShanActivity.this, MainActivity.class);
-            ShanActivity.this.finish();
             startActivity(intent);
+            ShanActivity.this.finish();
+
         }else{
             new Thread (new Runnable() {
                 @Override

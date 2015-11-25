@@ -54,7 +54,7 @@
                 <com.job.utils.ListViewForScrollView
                     android:id="@+id/lv"
                     android:layout_width="fill_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                 </com.job.utils.ListViewForScrollView>
             </ScrollView>
