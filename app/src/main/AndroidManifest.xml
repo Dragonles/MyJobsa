@@ -57,6 +57,10 @@
             android:name=".UpdateInformationActivity"
             android:label="@string/title_activity_update_information" >
         </activity>
+        <activity
+            android:name=".CitysActivity"
+            android:label="@string/title_activity_citys" >
+        </activity>
     </application>
 
 </manifest>
