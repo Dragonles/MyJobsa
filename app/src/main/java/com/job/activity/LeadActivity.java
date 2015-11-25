@@ -66,8 +66,8 @@ public class LeadActivity extends Activity {
         BmobUser bmobUser = BmobUser.getCurrentUser(LeadActivity.this);
         if(bmobUser != null){
             Intent intent = new Intent(LeadActivity.this, MainActivity.class);
-            LeadActivity.this.finish();
             startActivity(intent);
+            LeadActivity.this.finish();
         }else{
             //缓存用户对象为空时， 可打开用户注册界面…
         }

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,8 +52,11 @@ public class HomeFragment extends Fragment {
     List<Home_hot_item> mhot_list = new ArrayList<>();
     List<Home_jiaji_item> mjiaji_list = new ArrayList<>();
     ListView mhot_listview,mjiaji_listview;
-    TextView text_city;
+    TextView text_city,qiandao;
+    ImageView qiandaoimg;
     private GridView mgv;
+    private String MY_RMBCost ="MY_RMBCost";
+    private String TodayTime ="TodayTime";
     double x,y;     //经纬度
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -77,12 +81,52 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home,container,false);
         //传递数据
         final SharedPreferences sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
-
         text_city = (TextView) v.findViewById(R.id.text_city);
         mgv=(GridViewForScrollView)v.findViewById(R.id.home_gridview);
         mgv.setAdapter(new GridViewAdpter(getActivity()));
         mhot_listview=(ListViewForScrollView)v.findViewById(R.id.home_hot_list);
         mjiaji_listview=(ListViewForScrollView)v.findViewById(R.id.home_jiaji_list);
+        qiandao=(TextView)v.findViewById(R.id.home_font_qiandao);
+        qiandaoimg=(ImageView)v.findViewById(R.id.qiandaoimg);
+        SharedPreferences my_rmb_data = getActivity().getSharedPreferences(MY_RMBCost, 0);
+        Time t = new Time();
+        t.setToNow();
+        int lastmonth = t.month + 1 ;
+        final String str =  t.year + "年" + lastmonth + "月" + t.monthDay + "日";
+        final String nowtime =my_rmb_data.getString(TodayTime, "").toString();
+        if(nowtime.equals(str)==true)
+        {
+            qiandao.setText("已签到！");
+            qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+        }
+        else
+        {
+          //  qiandao.setText("日期："+ str);
+            qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+        }
+
+        //签到功能
+        qiandao.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+               // qiandao.setText("已签到！");
+                SharedPreferences my_rmb_data =getActivity().getSharedPreferences(MY_RMBCost, 0);
+                if(my_rmb_data.getString(TodayTime, "").toString().equals(str)==true)
+                {
+                    Toast.makeText( getActivity() , "今日已签到！", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    my_rmb_data.edit()
+                            .putString(TodayTime, str)
+                            .commit();
+                   // qiandao.setText("日期："+ str +"已签到！");
+                    qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+                    Toast.makeText( getActivity() , "签到成功！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         mjiaji_list.add(new Home_jiaji_item("急招一名JS人员","地址：临沂市兰山区警察局","薪资可面议"));
         mjiaji_list.add(new Home_jiaji_item("急招一名PS人员","地址：临沂市兰山区民政局","薪资可面议"));
         mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));

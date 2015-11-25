@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/public_liner_color"
-    tools:context="com.job.activity.CompanyProve">
+    tools:context="com.job.activity.CompanyProveActivity">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -17,15 +17,17 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="<返回"/>
+                    android:background="@null"
+                    android:onClick="back"
+                    android:text="返回"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:gravity="center"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:id="@+id/cp_logo"
                     android:background="@drawable/user_head"/>
             </LinearLayout>
@@ -286,6 +288,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:text="立即认证"
+                        android:id="@+id/prove_submit"
                         android:background="@drawable/login_buttons_style"
                         android:layout_alignParentRight="true"/>
                 </RelativeLayout>

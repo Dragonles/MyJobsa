@@ -95,6 +95,7 @@
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="open_sdk_r5509" level="project" />
+    <orderEntry type="library" exported="" name="AMap_3DMap_v2.6.0_20150914" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="design-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />

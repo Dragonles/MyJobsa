@@ -4,6 +4,7 @@ package fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,12 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.job.activity.AboutWeActivity;
-import com.job.activity.MainActivity;
+import com.job.activity.CircleImageView;
+import com.job.activity.CompanyProveActivity;
+import com.job.activity.LoginActivity;
 import com.job.activity.R;
+import com.job.bean.CompanyProve;
+import com.job.bean.User;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.GetListener;
 
 
 /**
@@ -31,10 +45,11 @@ public class PerFragment extends Fragment {
     }
 
     private CheckBox checkBox;      //模式切换按钮
-    Button btn_renzheng;            //认证按钮
-    TextView txt_jianzhilishi,txt_yaoqing,txt_zhaopin;      //兼职历史    邀请好友    招聘信用
+    public static  Button btn_renzheng;            //认证按钮
+    TextView txt_jianzhilishi,txt_yaoqing,txt_zhaopin,usrname;      //兼职历史    邀请好友    招聘信用
     TextView tv_about;
-    ImageView iv_job_xinyong_img,iv_job_friends_img,iv_job_history_img;
+    Button login_out;
+    CircleImageView usericon;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,9 +60,81 @@ public class PerFragment extends Fragment {
         txt_zhaopin = (TextView) v.findViewById(R.id.txt_zhaopin);
         checkBox = (CheckBox) v.findViewById(R.id.mode);
         tv_about = (TextView) v.findViewById(R.id.tv_about);
-        iv_job_xinyong_img = (ImageView) v.findViewById(R.id.job_xinyong_img);
-        iv_job_friends_img = (ImageView) v.findViewById(R.id.job_friends_img);
-        iv_job_history_img = (ImageView) v.findViewById(R.id.job_history_img);
+        usericon=(CircleImageView)v.findViewById(R.id.user_img);
+        usrname=(TextView)v.findViewById(R.id.username);
+        login_out=(Button)v.findViewById(R.id.login_outs);
+        Bmob.initialize(getActivity(), "e98c629c488e891e6d090798dd2ced7f");
+        final BmobUser bmobUser = BmobUser.getCurrentUser(getActivity());
+        if(bmobUser != null){
+            usrname.setText(bmobUser.getUsername());
+            BmobQuery<User> query = new BmobQuery<User>();
+            query.getObject(getActivity(), bmobUser.getObjectId(), new GetListener<User>() {
+                @Override
+                public void onSuccess(User object) {
+                    Picasso.with(getActivity()).load(object.getUser_icon()).into(usericon);
+                    Log.i("coe", object.getUser_icon().toString());
+                }
+                @Override
+                public void onFailure(int code, String arg0) {
+                    // TODO Auto-generated method stub
+                    Log.i("ss", code + arg0);
+                }
+
+            });
+            BmobQuery<CompanyProve> querys = new BmobQuery<CompanyProve>();
+            //query.addWhereEqualTo("prove_flag",true);
+            String ss = bmobUser.getObjectId();
+            Log.i("codeflag",  "    user" + bmobUser.getObjectId());
+            querys.addWhereEqualTo("user_id", ss);
+            querys.findObjects(getActivity(), new FindListener<CompanyProve>() {
+                @Override
+                public void onSuccess(List<CompanyProve> list) {
+                    btn_renzheng.setText("认证V");
+                    btn_renzheng.setBackgroundColor(Color.YELLOW);
+                }
+                @Override
+                public void onError(int i, String s) {
+                    Log.i("codeflag", "失败" + i + "  " + s);
+                }
+            });
+
+            btn_renzheng.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent =new Intent(getActivity(), CompanyProveActivity.class);
+                    startActivity(intent);
+                }
+            });
+            login_out.setText("退出登录");
+        }else{
+            login_out.setText("请登录");
+        }
+
+
+
+        login_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BmobUser bmobUsers = BmobUser.getCurrentUser(getActivity());
+                if(bmobUsers != null) {
+                    Log.i("bilibili", "已经登录");
+//                    login_out.setText("退出登录");
+
+                    BmobUser.logOut(getActivity());   //清除缓存用户对象
+                    BmobUser currentUser = BmobUser.getCurrentUser(getActivity()); // 现在的currentUser是null了
+                    login_out.setText("请登录");
+                    usrname.setText("username");
+                    btn_renzheng.setText("认证");
+                    btn_renzheng.setBackgroundResource(R.drawable.per_button_style);
+                    usericon.setImageResource(R.drawable.user_head);
+                }else{
+                    Log.i("bilibili","未登录");
+                    login_out.setText("请登录");
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         //传递数据
         final SharedPreferences sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
 
@@ -66,13 +153,6 @@ public class PerFragment extends Fragment {
                     txt_yaoqing.setText("招聘历史");
                     txt_zhaopin.setText("招聘信用");
                     btn_renzheng.setVisibility(View.VISIBLE);
-                    iv_job_xinyong_img.setBackgroundResource(R.drawable.button_credit);
-                    iv_job_friends_img.setBackgroundResource(R.drawable.button_jobhistory);
-                    iv_job_history_img.setBackgroundResource(R.drawable.button_releasehistory);
-//                    iv_job_xinyong_img.setImageResource(R.drawable.button_credit);
-//                    iv_job_friends_img.setImageResource(R.drawable.button_jobhistory);
-//                    iv_job_history_img.setImageResource(R.drawable.button_releasehistory);
-
                     //传递数据
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putBoolean("type",false);
@@ -86,12 +166,6 @@ public class PerFragment extends Fragment {
                     txt_yaoqing.setText("邀请好友兼职");
                     txt_zhaopin.setText("兼职收入");
                     btn_renzheng.setVisibility(View.GONE);
-                    iv_job_xinyong_img.setBackgroundResource(R.drawable.button_money);
-                    iv_job_friends_img.setBackgroundResource(R.drawable.button_friends);
-                    iv_job_history_img.setBackgroundResource(R.drawable.button_releasehistory);
-//                    iv_job_xinyong_img.setImageResource(R.drawable.button_money);
-//                    iv_job_friends_img.setImageResource(R.drawable.button_friends);
-//                    iv_job_history_img.setImageResource(R.drawable.button_releasehistory);
 
                     //传递数据
                     SharedPreferences.Editor editor = sp.edit();
@@ -114,6 +188,45 @@ public class PerFragment extends Fragment {
         // Inflate the layout for this com.job.fragment
         // return inflater.inflate(R.layout.fragment_per, container, false);
     }
+
+//    class MyTask extends AsyncTask<String, String, Bitmap> {
+//        @Override
+//        protected Bitmap doInBackground(String... arg0) {
+//            // TODO Auto-generated method stub
+//            String url=arg0[0];
+//            Bitmap bm=getHttpBitmap(url);
+//            return bm;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Bitmap result) {
+//            // TODO Auto-generated method stub
+//            usericon.setImageBitmap(result);
+//        }
+//    }
+//    public Bitmap getHttpBitmap(String url){
+//        Bitmap bitmap=null;
+//        URL myUrl;
+//        try {
+//            myUrl=new URL(url);
+//            HttpURLConnection conn=(HttpURLConnection)myUrl.openConnection();
+//            conn.setConnectTimeout(5000);
+//            conn.connect();
+//            InputStream is=conn.getInputStream();
+//            bitmap= BitmapFactory.decodeStream(is);
+//            //把bitmap转成圆形
+//            //bitmap=toRoundBitmap(bitmap);
+//            is.close();
+//        } catch (MalformedURLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        //返回圆形bitmap
+//        return bitmap;
+//    }
 
 
 }
