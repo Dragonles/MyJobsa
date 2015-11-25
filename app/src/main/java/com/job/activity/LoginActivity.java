@@ -14,6 +14,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.job.bean.User;
+
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
+import cn.bmob.v3.listener.SaveListener;
+
 /**
  * LoginActivity  登录页
  * 2015-11-18
@@ -49,11 +57,55 @@ public class LoginActivity extends Activity {
                 LoginActivity.this.finish();
             }
         });
+        BmobUser bmobUser = BmobUser.getCurrentUser(this);
+        if(bmobUser != null){
+
+        }else{
+            //缓存用户对象为空时， 可打开用户注册界面…
+        }
         //  登录按钮点击事件
         btn_login_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this,"点击了登录按钮！",Toast.LENGTH_SHORT).show();
+                Bmob.initialize(LoginActivity.this, "e98c629c488e891e6d090798dd2ced7f");
+                BmobUser bu2 = new BmobUser();
+                bu2.setUsername(edit_login_name.getText().toString());
+                bu2.setPassword(edit_login_pwd.getText().toString());
+                bu2.login(LoginActivity.this, new SaveListener() {
+                    @Override
+                    public void onSuccess() {
+                        // TODO Auto-generated method stub
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        LoginActivity.this.finish();
+                    }
+
+                    @Override
+                    public void onFailure(int code, String msg) {
+                        // TODO Auto-generated method stub
+                        Log.i("code",code+msg);
+                        Toast.makeText(LoginActivity.this, "用户名或密码输.入错误！", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                BmobUser.loginByAccount(LoginActivity.this, edit_login_name.getText().toString(), edit_login_pwd.getText().toString(), new LogInListener<User>() {
+
+                    @Override
+                    public void done(User user, BmobException e) {
+                        // TODO Auto-generated method stub
+                        if (user != null) {
+                            Log.i("smile", "用户登陆成功");
+                            Toast.makeText(LoginActivity.this, "用户登陆成功！", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            LoginActivity.this.finish();
+                        }
+                        else {
+                            Log.i("code2",e.toString());
+                            Toast.makeText(LoginActivity.this, "用户名或密码输入错.误！", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
         //  忘记密码点击事件

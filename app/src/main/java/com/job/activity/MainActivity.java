@@ -1,14 +1,30 @@
 package com.job.activity;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import cn.bmob.v3.BmobUser;
 import fragment.FabuFragment;
 import fragment.HomeFragment;
 import fragment.NearFragment;
@@ -16,9 +32,20 @@ import fragment.PerFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明mLocationOption对象
+    public AMapLocationClientOption mLocationOption = null;
+    //设置是否返回地址信息（默认返回地址信息）
+    public String city;
+
+    SharedPreferences sp;
+    Boolean type = true;
+
     FragmentManager mfm;
     FragmentTransaction ftt;
     RadioButton mhome,mfabu,mnearll,mper;
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +54,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mfabu = (RadioButton) findViewById(R.id.fabu);//发布的单选按钮
         mnearll = (RadioButton) findViewById(R.id.nearll);//附近的单选按钮
         mper=(RadioButton)findViewById(R.id.per);//个人中心的单选按钮
+
+        //设置模式开关传递，，接收  默认为true
+        sp = MainActivity.this.getSharedPreferences("user_type", Context.MODE_PRIVATE);
+        type = sp.getBoolean("type",true);
+
+        //判断是招聘 还是 求职
+        if (type){
+            //true  求职者模式
+            //改变图片
+            Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_readio_button_s_style);
+            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+            mfabu.setCompoundDrawables(null,topDrawable, null , null);
+            Log.i("FabuFragmentflag", "**********" + type);
+        }else{
+            //false  招聘者模式
+            //改变图片
+            Log.i("FabuFragmentflag","555555");
+            Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_radio_button_style);
+            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+            mfabu.setCompoundDrawables(null,topDrawable, null , null);
+            Log.i("FabuFragmentflag","////////"+type);
+        }
+
         //home第一个默认
         mhome.setChecked(true);
 
@@ -42,6 +92,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             HomeFragment pf = new HomeFragment();
             ftt.add(R.id.fragment_parent, pf, "home");
             ftt.commit();
+        }
+        BmobUser bmobUser = BmobUser.getCurrentUser(MainActivity.this);
+        if(bmobUser != null){
+            // 允许用户使用应用
+        }else{
+            //缓存用户对象为空时， 可打开用户注册界面…
         }
     }
 
@@ -69,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
         FragmentTransaction ftt = mfm.beginTransaction();
         if (mfm.findFragmentByTag("home")!= null){
             ftt.hide(mfm.findFragmentByTag("home"));
@@ -89,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 HomeFragment hf = new HomeFragment();
                 //add(父布局ID，Fragment，Tag);
-                ftt.add(R.id.fragment_parent,hf,"home");
+                ftt.add(R.id.fragment_parent, hf, "home");
             }
 
         }else if (id == R.id.fabu){
@@ -98,6 +155,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 FabuFragment ff = new FabuFragment();
                 //add(父布局ID，Fragment，Tag);
+                //判断是招聘 还是 求职
+                if (type){
+                    //true  求职者模式
+                    //改变图片
+                    Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_readio_button_s_style);
+                    topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+                    mfabu.setCompoundDrawables(null,topDrawable, null , null);
+                    Log.i("FabuFragmentflag", "******点击了****" + type);
+                }else{
+                    //false  招聘者模式
+                    //改变图片
+                    Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_radio_button_style);
+                    topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+                    mfabu.setCompoundDrawables(null,topDrawable, null , null);
+                    Log.i("FabuFragmentflag","////点击了////"+type);
+                }
                 ftt.add(R.id.fragment_parent,ff,"fabu");
             }
         }else if (id == R.id.nearll){   //我的
@@ -119,4 +192,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         ftt.commit();
     }
+
 }
