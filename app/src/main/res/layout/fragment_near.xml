@@ -45,19 +45,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:id="@+id/sr"
+            android:layout_height="match_parent">
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/rly_map">
-
                 <com.job.utils.ListViewForScrollView
                     android:id="@+id/lv"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
-
                 </com.job.utils.ListViewForScrollView>
             </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
