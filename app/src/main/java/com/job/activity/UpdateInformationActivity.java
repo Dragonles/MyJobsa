@@ -40,7 +40,7 @@ public class UpdateInformationActivity extends AppCompatActivity {
         Bmob.initialize(UpdateInformationActivity.this, "e98c629c488e891e6d090798dd2ced7f");
         final BmobUser bmobUser = BmobUser.getCurrentUser(UpdateInformationActivity.this);
         if(bmobUser != null) {
-            tv_update_username.setText(bmobUser.getUsername());
+        //    tv_update_username.setText(bmobUser.getUsername());
             BmobQuery<User> query = new BmobQuery<User>();
             query.getObject(UpdateInformationActivity.this, bmobUser.getObjectId(), new GetListener<User>() {
                 @Override
