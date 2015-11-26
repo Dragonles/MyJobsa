@@ -23,6 +23,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.gugalor.citylist.CityList;
 import com.job.activity.AllClassActivity;
 import com.job.activity.R;
 import com.job.adapter.HomehotAdpter;
@@ -87,8 +88,13 @@ public class HomeFragment extends Fragment {
         text_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
 //                Intent intent = new Intent(getActivity(), CityList.class);
 //                startActivityForResult(intent, 1);
+=======
+                Intent intent = new Intent(getActivity(), CityList.class);
+                startActivityForResult(intent, 1);
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
             }
         });
 

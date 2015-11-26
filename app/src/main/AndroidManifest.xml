@@ -90,6 +90,9 @@
             android:label="@string/title_activity_company_prove" >
         </activity>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
         <activity
             android:name=".UpdateInformationActivity"
             android:label="@string/title_activity_update_information" >
@@ -97,8 +100,11 @@
         <activity android:name=".CreatJianliActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="createjiali"></activity>
+<<<<<<< HEAD
         <activity android:name="com.gugalor.citylist.CityList"></activity>
         <activity android:name="com.gugalor.citylist.searchactivity"></activity>
+=======
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
 
 =======
 >>>>>>> parent of 49ddb97... add CitysActivity from zengqing

@@ -37,4 +37,8 @@ dependencies {
     //bmob-sms ：Bmob单独为短信服务提供的包
     compile 'cn.bmob.android:bmob-sms:1.0.1'
     compile files('libs/AMap_Location_v2.0.0_20151117.jar')
+<<<<<<< HEAD
+=======
+    compile project(':citylist')
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
 }

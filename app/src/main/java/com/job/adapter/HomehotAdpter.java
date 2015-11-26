@@ -53,7 +53,11 @@ public class HomehotAdpter extends BaseAdapter{
             holder=(ViewHolder)convertView.getTag();
         }
         holder.hot_item_title.setText(mhot_list.get(position).getTitle());
+<<<<<<< HEAD
      //   holder.hot_item_money.setText(mhot_list.get(position).getCr_salary());
+=======
+        holder.hot_item_money.setText(mhot_list.get(position).getCr_salary());
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
         holder.hot_item_address.setText(mhot_list.get(position).getCr_address());
         return convertView;
     }

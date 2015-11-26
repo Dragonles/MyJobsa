@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <module external.linked.project.id=":app" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="myjobsa" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+=======
+<module external.linked.project.id=":app" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="Job" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
@@ -92,10 +96,15 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 23 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="open_sdk_r5509" level="project" />
     <orderEntry type="library" exported="" name="AMap_3DMap_v2.6.0_20150914" level="project" />
+=======
+    <orderEntry type="library" exported="" name="AMap_3DMap_v2.6.0_20150914" level="project" />
+    <orderEntry type="library" exported="" name="open_sdk_r5509" level="project" />
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
     <orderEntry type="library" exported="" name="picasso-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="design-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="mta-sdk-1.6.2" level="project" />
@@ -109,6 +118,10 @@
     <orderEntry type="library" exported="" name="support-v4-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="module" module-name="citylist" exported="" />
+>>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
     <orderEntry type="module" module-name="multi-image-selector" exported="" />
   </component>
 </module>

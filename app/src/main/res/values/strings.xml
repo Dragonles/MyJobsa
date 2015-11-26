@@ -49,5 +49,6 @@
     <string name="text_job_compensation">薪资：</string>
     <string name="text_job_money">3000/月</string>
     <string name="title_activity_tiaokuan">TiaokuanActivity</string>
+    <string name="title_activity_citys">CitysActivity</string>
 
 </resources>
