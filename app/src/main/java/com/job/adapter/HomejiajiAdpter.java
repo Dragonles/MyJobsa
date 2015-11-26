@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.job.activity.R;
-import com.job.bean.Home_hot_item;
 import com.job.bean.Home_jiaji_item;
 
 import java.util.List;
