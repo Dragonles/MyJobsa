@@ -5,16 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,15 +23,11 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.gugalor.citylist.CityList;
 import com.job.activity.AllClassActivity;
-import com.job.activity.DingweiActivity;
-import com.job.activity.LocationActivity;
-import com.job.activity.MainActivity;
 import com.job.activity.R;
 import com.job.adapter.HomehotAdpter;
 import com.job.adapter.HomejiajiAdpter;
-import com.job.bean.Home_hot_item;
+import com.job.bean.CompanyRelease;
 import com.job.bean.Home_jiaji_item;
 import com.job.utils.GridViewForScrollView;
 import com.job.utils.ListViewForScrollView;
@@ -42,8 +36,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * 主页框架
@@ -51,12 +46,14 @@ import java.util.logging.LogRecord;
  */
 public class HomeFragment extends Fragment {
 
-    List<Home_hot_item> mhot_list = new ArrayList<>();
+    List<CompanyRelease> mhot_list = new ArrayList<>();
     List<Home_jiaji_item> mjiaji_list = new ArrayList<>();
     ListView mhot_listview,mjiaji_listview;
-    TextView text_city;
-    EditText et_sousuo;
+    TextView text_city,qiandao;
+    ImageView qiandaoimg;
     private GridView mgv;
+    private String MY_RMBCost ="MY_RMBCost";
+    private String TodayTime ="TodayTime";
     double x,y;     //经纬度
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -81,58 +78,76 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home,container,false);
         //传递数据
         final SharedPreferences sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
-
         text_city = (TextView) v.findViewById(R.id.text_city);
-
-        /**
-         * 跳转城市列表页  返回定位城市或者选择城市
-         *
-         * */
-        text_city.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CityList.class);
-                startActivityForResult(intent, 1);
-            }
-        });
-
-
-
         mgv=(GridViewForScrollView)v.findViewById(R.id.home_gridview);
-        et_sousuo = (EditText) v.findViewById(R.id.et_sousuo);
-
-
-
         mgv.setAdapter(new GridViewAdpter(getActivity()));
         mhot_listview=(ListViewForScrollView)v.findViewById(R.id.home_hot_list);
         mjiaji_listview=(ListViewForScrollView)v.findViewById(R.id.home_jiaji_list);
-        mjiaji_list.add(new Home_jiaji_item("急招一名JS人员","地址：临沂市兰山区警察局","薪资可面议"));
-        mjiaji_list.add(new Home_jiaji_item("急招一名PS人员","地址：临沂市兰山区民政局","薪资可面议"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人","临沂市烫头镇马云家","70元/天"));
-        mhot_list.add(new Home_hot_item("烫头搓澡需100人", "临沂市烫头镇马云家", "70元/天"));
+        qiandao=(TextView)v.findViewById(R.id.home_font_qiandao);
+        qiandaoimg=(ImageView)v.findViewById(R.id.qiandaoimg);
+        SharedPreferences my_rmb_data = getActivity().getSharedPreferences(MY_RMBCost, 0);
+        Time t = new Time();
+        t.setToNow();
+        int lastmonth = t.month + 1 ;
+        final String str =  t.year + "年" + lastmonth + "月" + t.monthDay + "日";
+        final String nowtime =my_rmb_data.getString(TodayTime, "").toString();
+        if(nowtime.equals(str)==true)
+        {
+            qiandao.setText("已签到！");
+            qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+        }
+        else
+        {
+          //  qiandao.setText("日期："+ str);
+            qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+        }
 
-        et_sousuo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    Intent intent = new Intent (getActivity(),LocationActivity.class);
-                    startActivity(intent);
+        //签到功能
+        qiandao.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                qiandao.setText("已签到！");
+                qiandao.setTextSize(12);
+               // qiandaoimg.setImageResource(R.drawable.conversation_needhandle_icon_normal);
+                SharedPreferences my_rmb_data = getActivity().getSharedPreferences(MY_RMBCost, 0);
+                if (my_rmb_data.getString(TodayTime, "").toString().equals(str) == true) {
+                    Toast.makeText(getActivity(), "今日已签到！", Toast.LENGTH_SHORT).show();
+                } else {
+                    my_rmb_data.edit()
+                            .putString(TodayTime, str)
+                            .commit();
+                    // qiandao.setText("日期："+ str +"已签到！");
+                    qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+                    Toast.makeText(getActivity(), "签到成功！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        BmobQuery<CompanyRelease> query = new BmobQuery<CompanyRelease>();
+        query.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+            @Override
+            public void onSuccess(List<CompanyRelease> object) {
+                // TODO Auto-generated method stub
+              //  toast("查询成功：共" + object.size() + "条数据。");
+                for (CompanyRelease gameScore : object) {
+                    mhot_list.add(new CompanyRelease(gameScore.getTitle(),gameScore.getCr_salary(),gameScore.getCr_address()));
+                }
+                mhot_listview.setAdapter(new HomehotAdpter(getActivity(),mhot_list));
+            }
 
+            @Override
+            public void onError(int code, String msg) {
+                // TODO Auto-generated method stub
+              //  toast("查询失败：" + msg);
+            }
+        });
         mgv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 7) {
                     Intent intent = new Intent(getActivity(), AllClassActivity.class);
                     startActivity(intent);
+                    Log.i("ttt",position+"ppppppppppp");
                 }
             }
         });
@@ -229,21 +244,7 @@ public class HomeFragment extends Fragment {
             }
         }).start();
 
-
         return v;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null)
-            switch (resultCode) {
-                case 2:
-                    text_city.setText(data.getStringExtra("city"));
-                    break;
-
-                default:
-                    break;
-            }
     }
 
     class GridViewAdpter extends BaseAdapter
@@ -285,10 +286,4 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        et_sousuo.clearFocus();
-    }
 }
