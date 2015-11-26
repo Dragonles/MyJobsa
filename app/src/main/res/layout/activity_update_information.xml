@@ -16,6 +16,7 @@
             android:src="@drawable/back"
             android:background="@null"
             android:id="@+id/button"
+            android:onClick="up_back"
             android:layout_marginLeft="10dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -34,39 +35,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:gravity="center"
+        android:paddingTop="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="头像"
-            android:textColor="@color/public_font_color"
-            android:textSize="12sp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/text_update_information_header" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=">"
-            android:background="@null"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:id="@+id/btn_update_information_header" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="@color/public_font_color"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/text_update_information_header"
-            android:layout_alignLeft="@+id/text_update_information_header"
-            android:layout_alignStart="@+id/text_update_information_header" />
+        <com.job.activity.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/img_update_userheader"
+            android:src="@drawable/user_head"/>
 
     </RelativeLayout>
 
@@ -98,13 +76,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@color/public_font_color"
+            android:background="@color/home_hot_cebian"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/text_update_information_username"
             android:layout_alignLeft="@+id/text_update_information_username"
-            android:layout_alignStart="@+id/text_update_information_username" />
+            android:layout_alignStart="@+id/text_update_information_username"
+            android:id="@+id/textView10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小坤子"
+            android:id="@+id/tv_update_username"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_update_information_username"
+            android:layout_toStartOf="@+id/btn_update_information_username" />
 
     </RelativeLayout>
 
@@ -136,7 +124,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@color/public_font_color"
+            android:background="@color/home_hot_cebian"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -174,13 +162,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@color/public_font_color"
+            android:background="@color/home_hot_cebian"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/text_update_information_email"
             android:layout_alignLeft="@+id/text_update_information_email"
             android:layout_alignStart="@+id/text_update_information_email" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123456@qq.com"
+            android:id="@+id/tv_update_email"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_update_information_email"
+            android:layout_toStartOf="@+id/btn_update_information_email" />
 
     </RelativeLayout>
 
@@ -212,13 +209,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@color/public_font_color"
+            android:background="@color/home_hot_cebian"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/text_update_information_tel"
             android:layout_alignLeft="@+id/text_update_information_tel"
             android:layout_alignStart="@+id/text_update_information_tel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1521521521"
+            android:id="@+id/tv_update_tel"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_update_information_tel"
+            android:layout_toStartOf="@+id/btn_update_information_tel" />
 
     </RelativeLayout>
 

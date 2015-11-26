@@ -1,1 +1,3 @@
-include ':app', ':multi-image-selector'
+include  ':app'
+include ':pinyinSearch'
+include  ':multi-image-selector'

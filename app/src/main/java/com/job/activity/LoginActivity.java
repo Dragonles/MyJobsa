@@ -1,6 +1,7 @@
 package com.job.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,7 +60,7 @@ public class LoginActivity extends Activity {
         });
         BmobUser bmobUser = BmobUser.getCurrentUser(this);
         if(bmobUser != null){
-            // 允许用户使用应用
+
         }else{
             //缓存用户对象为空时， 可打开用户注册界面…
         }
@@ -67,6 +68,9 @@ public class LoginActivity extends Activity {
         btn_login_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ProgressDialog pd = ProgressDialog.show(LoginActivity.this, "", "");
+                pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                pd.setCancelable(false);
                 Bmob.initialize(LoginActivity.this, "e98c629c488e891e6d090798dd2ced7f");
                 BmobUser bu2 = new BmobUser();
                 bu2.setUsername(edit_login_name.getText().toString());
@@ -97,10 +101,12 @@ public class LoginActivity extends Activity {
                             Toast.makeText(LoginActivity.this, "用户登陆成功！", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
+                            pd.dismiss();
                             LoginActivity.this.finish();
                         }
                         else {
                             Log.i("code2",e.toString());
+                            pd.dismiss();
                             Toast.makeText(LoginActivity.this, "用户名或密码输入错.误！", Toast.LENGTH_SHORT).show();
                         }
                     }

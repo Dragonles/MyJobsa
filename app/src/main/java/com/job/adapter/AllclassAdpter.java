@@ -8,8 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.job.activity.R;
-import com.job.bean.All_class_item;
-import com.job.bean.Home_hot_item;
+import com.job.bean.Classify;
 
 import java.util.List;
 
@@ -18,9 +17,9 @@ import java.util.List;
  */
 public class AllclassAdpter  extends BaseAdapter{
 
-    private List<All_class_item> alllist;
+    private List<Classify> alllist;
     Context context;
-    public AllclassAdpter(Context context,List<All_class_item> alllist)
+    public AllclassAdpter(Context context,List<Classify> alllist)
     {
         this.context=context;
         this.alllist=alllist;
@@ -53,7 +52,7 @@ public class AllclassAdpter  extends BaseAdapter{
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        holder.title.setText(alllist.get(position).getCalsstext());
+        holder.title.setText(alllist.get(position).getClassify_name());
         return convertView;
     }
     class ViewHolder

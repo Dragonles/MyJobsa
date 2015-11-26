@@ -5,11 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.job.activity.R;
-import com.job.bean.Home_hot_item;
+import com.job.bean.CompanyRelease;
 
 import java.util.List;
 
@@ -17,9 +16,9 @@ import java.util.List;
  * Created by Administrator on 2015/11/20.
  */
 public class HomehotAdpter extends BaseAdapter{
-    private List<Home_hot_item> mhot_list;
+    private List<CompanyRelease> mhot_list;
     Context context;
-    public HomehotAdpter(Context context,List<Home_hot_item> mhot_list)
+    public HomehotAdpter(Context context,List<CompanyRelease> mhot_list)
     {
         this.context=context;
         this.mhot_list=mhot_list;
@@ -46,16 +45,16 @@ public class HomehotAdpter extends BaseAdapter{
             holder= new ViewHolder();
             convertView=LayoutInflater.from(context).inflate(R.layout.home_hot_item,null);
             holder.hot_item_title=(TextView)convertView.findViewById(R.id.hot_item_title);
-            holder.hot_item_money=(TextView)convertView.findViewById(R.id.hot_item_money);
+           // holder.hot_item_money=(TextView)convertView.findViewById(R.id.hot_item_money);
             holder.hot_item_address=(TextView)convertView.findViewById(R.id.hot_item_address);
             convertView.setTag(holder);
         }
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        holder.hot_item_title.setText(mhot_list.get(position).getHot_title());
-        holder.hot_item_money.setText(mhot_list.get(position).getHot_moneny());
-        holder.hot_item_address.setText(mhot_list.get(position).getHot_address());
+        holder.hot_item_title.setText(mhot_list.get(position).getTitle());
+     //   holder.hot_item_money.setText(mhot_list.get(position).getCr_salary());
+        holder.hot_item_address.setText(mhot_list.get(position).getCr_address());
         return convertView;
     }
     class ViewHolder {

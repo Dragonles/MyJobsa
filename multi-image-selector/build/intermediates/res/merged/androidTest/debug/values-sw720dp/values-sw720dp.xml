@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/14open/PAT/Jobs/multi-image-selector/build/intermediates/bundles/debug/res/values-sw720dp/values-sw720dp.xml -->
+    <!-- From: file:/F:/program/myjobsa/multi-image-selector/build/intermediates/bundles/debug/res/values-sw720dp/values-sw720dp.xml -->
     <eat-comment/>
     <dimen name="folder_cover_size">82dp</dimen>
     <dimen name="image_size">120dp</dimen>

@@ -201,20 +201,5 @@ public class SetingsUserActivity extends AppCompatActivity {
     }
 
 
-//    class MyTask extends AsyncTask<String, String, Bitmap> {
-//        @Override
-//        protected Bitmap doInBackground(String... arg0) {
-//            // TODO Auto-generated method stub
-//            String url=arg0[0];
-//            Bitmap bm=getHttpBitmap(url);
-//            return bm;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Bitmap result) {
-//            // TODO Auto-generated method stub
-//            bttou.setImageBitmap(result);
-//        }
-//    }
 
 }
