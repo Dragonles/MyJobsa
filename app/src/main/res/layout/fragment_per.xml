@@ -53,6 +53,7 @@
                             android:background="@drawable/per_button_style"
                             android:textColor="@color/public_font_color"
                             android:textSize="14sp"
+                            android:id="@+id/jianli"
                             android:text="@string/user_jianjie"/>
                         <TextView
                             android:layout_width="wrap_content"

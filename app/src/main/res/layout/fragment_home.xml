@@ -13,38 +13,36 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:id="@+id/home_top_linear"
-            android:background="@color/user_font_color"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="#45484a"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/text_city"
-                android:layout_width="wrap_content"
-                android:padding="10dp"
+                android:layout_width="0dp"
                 android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:textColor="@color/user_font_color"
                 android:layout_height="match_parent"
                 android:text="临沂"/>
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:padding="10dp"
                 android:id="@+id/home_search_edit"
-                android:background="@drawable/qzone_pictureviewer_operation_bg"
+                android:layout_weight="4.5"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/home_search_img"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/button_search"/>
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_toRightOf="@id/home_search_img"
-                    android:background="@null"
+                    android:hint="请输入搜索的职业"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/public_liner_color"
+                    android:textColor="@color/user_font_color"
+                    android:drawableLeft="@drawable/button_search_pressed"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:layout_height="match_parent">
                 <TextView
@@ -52,6 +50,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/home_font_qiandao"
                     android:gravity="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/user_font_color"
                     android:text="签到"/>
                 <ImageView
                     android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.job.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import com.job.bean.Classify;
 import com.job.bean.CompanyProve;
 import com.job.bean.User;
 
+import java.util.Calendar;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
@@ -36,13 +39,15 @@ import me.nereo.imagechoose.MultiImageSelectorActivity;
 
 public class CompanyProveActivity extends AppCompatActivity {
 
-    EditText cp_product,cp_date,cp_name,cp_address,cp_number;
-    Button cp_type,msubmit;
+    EditText cp_product,cp_name,cp_address,cp_number;
+    Button cp_type,msubmit,cp_date;
     ImageView co_logo;
     public static EditText cp_person;
     private  static  final int REQUEST_IMAGE=2;
     private String mFilePath;
     String[] splist;
+    DatePicker dp;
+    Calendar ca;
     int sp=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +55,13 @@ public class CompanyProveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company_prove);
         co_logo=(ImageView)findViewById(R.id.cp_logo);
         cp_address=(EditText)findViewById(R.id.cp_address);
-        cp_date=(EditText)findViewById(R.id.cp_date);
+        cp_date=(Button)findViewById(R.id.cp_date);
         cp_person=(EditText)findViewById(R.id.cp_companyperson);
         cp_name=(EditText)findViewById(R.id.cp_name);
+        ca = Calendar.getInstance();
         cp_product=(EditText)findViewById(R.id.cp_product);
         cp_number=(EditText)findViewById(R.id.cp_number);
+        dp=(DatePicker)findViewById(R.id.datePicker1);
         cp_type=(Button)findViewById(R.id.cp_type);
         msubmit=(Button)findViewById(R.id.prove_submit);
         Bmob.initialize(CompanyProveActivity.this, "e98c629c488e891e6d090798dd2ced7f");
@@ -75,6 +82,41 @@ public class CompanyProveActivity extends AppCompatActivity {
             }
         });
 
+        dp.init(ca.get(Calendar.YEAR),ca.get(Calendar.DAY_OF_MONTH),ca.get(Calendar.MONTH),
+                new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                        // TODO Auto-generated method stub
+                        ca.set(year, monthOfYear, dayOfMonth);
+                        cp_date.setText(year + "年" + monthOfYear + "月" + dayOfMonth
+                                + "日");// 文本框显示日期
+
+                    }
+                });
+        cp_date.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                new DatePickerDialog(CompanyProveActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                cp_date.setText(year + "年" + monthOfYear + "月" + dayOfMonth
+                                        + "日");// 文本框显示日期
+
+
+                            }
+
+                        }, ca.get(Calendar.YEAR), ca.get(Calendar.MONTH), ca
+                        .get(Calendar.DAY_OF_MONTH)).show();
+            }
+
+        });
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(CompanyProveActivity.this);
             cp_type.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +198,7 @@ public class CompanyProveActivity extends AppCompatActivity {
                             public void onFailure(int i, String s) {
                                 Log.i("cha", "onSuccess 失败" + s);
                                 pd.dismiss();
+                                Toast.makeText(CompanyProveActivity.this, "发送失败", Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -168,6 +211,7 @@ public class CompanyProveActivity extends AppCompatActivity {
                     @Override
                     public void onError(int i, String s) {
                         pd.dismiss();
+                        Toast.makeText(CompanyProveActivity.this, "失败", Toast.LENGTH_LONG).show();
                         Log.i("cha", "onError是:" + s);
                     }
                 });
