@@ -67,6 +67,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" >
         </activity>
+        <activity android:name=".AllClassActivity"
+            android:label="allclass"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".DingweiActivity"
             android:label="@string/title_activity_dingwei"
@@ -90,7 +93,9 @@
             android:name=".UpdateInformationActivity"
             android:label="@string/title_activity_update_information" >
         </activity>
-
+        <activity android:name=".CreatJianliActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="createjiali"></activity>
 
     </application>
 
