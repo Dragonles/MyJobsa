@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/public_background_color"
+    android:background="@color/public_liner_color"
     tools:context="com.job.activity.CompanyProveActivity">
     <ScrollView
         android:layout_width="fill_parent"
@@ -13,38 +13,27 @@
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:background="@color/style_color"
                 android:layout_height="wrap_content">
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:textColor="@color/user_font_color"
                     android:onClick="back"
-                    android:drawableLeft="@drawable/back"
                     android:text="返回"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:background="@color/style_color"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:id="@+id/cp_logo"
                     android:background="@drawable/user_head"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/user_font_color"
-                    android:layout_height="wrap_content"
-                    android:text="上传你的公司Logo"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -68,6 +57,7 @@
                         android:padding="10dp"
                         android:id="@+id/cp_companyperson"
                         android:layout_toRightOf="@+id/faren"
+                        android:background="@drawable/edit_login_select"
                         android:layout_alignParentRight="true"/>
                 </RelativeLayout>
                 <TextView
@@ -75,14 +65,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -115,14 +100,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -154,14 +134,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -179,41 +154,23 @@
                         android:id="@+id/creat"
                         android:layout_centerVertical="true"
                         android:text="创建时间:"/>
-                    <RelativeLayout
+                    <EditText
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/creat"
-                        android:gravity="left"
-                        android:layout_height="wrap_content">
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/cp_date"
-                            android:text="选择创建日期"
-                            android:background="@null"/>
-                        <DatePicker
-                            android:id="@+id/datePicker1"
-                            android:layout_width="wrap_content"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="64dp"
-                            android:layout_marginTop="86dp" />
-                    </RelativeLayout>
-
+                        android:padding="10dp"
+                        android:id="@+id/cp_date"
+                        android:background="@drawable/edit_login_select"
+                        android:layout_alignParentRight="true"/>
                 </RelativeLayout>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -279,14 +236,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"
@@ -318,14 +270,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/user_font_color"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="0dp"

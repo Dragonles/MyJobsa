@@ -5,4 +5,4 @@
     <item android:color="#CDCECE" android:state_pressed="false" />
     <item android:color="#FFFFFF" android:state_pressed="true" />
     <item android:color="#CDCECE" />
-</selector><!-- From: file:/D:/14open/PAT/Jobs/multi-image-selector/src/main/res/color/choose_image_text_color.xml -->
+</selector><!-- From: file:/E:/android/androidstudio/MyProjects/Job/multi-image-selector/src/main/res/color/choose_image_text_color.xml -->

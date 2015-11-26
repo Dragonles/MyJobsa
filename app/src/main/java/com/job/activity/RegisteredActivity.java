@@ -41,7 +41,6 @@ public class RegisteredActivity extends Activity {
                     public void done(Integer integer, BmobException e) {
                         if (e == null) {//验证码发送成功
                             sid=integer;
-                            mrequset.setClickable(false);
                             Toast.makeText(RegisteredActivity.this,"验证码正在来的路上",Toast.LENGTH_SHORT).show();
                             Log.i("smile", "短信id：" + integer);//用于查询本次短信发送详情
                         } else {
@@ -75,7 +74,6 @@ public class RegisteredActivity extends Activity {
                             // TODO Auto-generated method stub
                             if (ex == null) {//短信验证码已验证成功
                                 Log.i("smile", "验证通过");
-                                mrequset.setClickable(true);
                                 Intent intent =new Intent(RegisteredActivity.this,SetingsUserActivity.class);
                                 intent.putExtra("phone",mregist_phone.getText());
                                 startActivity(intent);

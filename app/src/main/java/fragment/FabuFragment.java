@@ -11,15 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.job.activity.FabuDetailsActivity;
 import com.job.activity.FabuJobDetailsActivity;
 import com.job.activity.R;
+import com.job.adapter.FabuFragmentAdapter;
 import com.job.utils.GridViewForScrollView;
 
 import java.util.ArrayList;
@@ -70,7 +69,17 @@ public class FabuFragment extends Fragment {
         }
 
         //添加类型图片
-       gridView.setAdapter(new FabuFragmentAdapter(getActivity()));
+        list.add(R.drawable.fragment_fabu_anbao);
+        list.add(R.drawable.fragment_fabu_cuxiao);
+        list.add(R.drawable.fragment_fabu_fuwuyuan);
+        list.add(R.drawable.fragment_fabu_jiajiao);
+        list.add(R.drawable.fragment_fabu_jiaqigong);
+        list.add(R.drawable.fragment_fabu_linshigong);
+        list.add(R.drawable.fragment_fabu_paidan);
+        list.add(R.drawable.fragment_fabu_procedure);
+        list.add(R.drawable.fragment_fabu_xiaoshou);
+        fabuFragmentAdapter = new FabuFragmentAdapter(getActivity().getApplicationContext(),list);
+        gridView.setAdapter(fabuFragmentAdapter);
 
         //TextView点击事件
         myfabu.setOnClickListener(new View.OnClickListener() {
@@ -127,45 +136,6 @@ public class FabuFragment extends Fragment {
             fabutitle.setText("选择发布类型");
             myfabu.setText("我的发布");
             Log.i("FabuFragmentflag","////////"+type+fabutitle.getText());
-        }
-    }
-
-    class FabuFragmentAdapter extends BaseAdapter
-    {
-        private int[] images={R.drawable.anbao_img,R.drawable.xiaoshou_img,R.drawable.jiajiao_img,R.drawable.zhuchi_img,
-                R.drawable.cuxiao_img,R.drawable.paidan_img,R.drawable.jiazheng_img,R.drawable.more_img};
-        private String[] texts={"安保","销售","家教","主持人","促销","派单","家政","更多"};
-
-        LayoutInflater inflater;
-        public FabuFragmentAdapter(Context context)
-        {
-            inflater=LayoutInflater.from(context);
-        }
-        @Override
-        public int getCount() {
-            return images.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return images[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v =inflater.inflate(R.layout.gridview_item,null);
-            ImageView iv=(ImageView)v.findViewById(R.id.gridview_img);
-            TextView tv=(TextView)v.findViewById(R.id.gridview_text);
-            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            iv.setPadding(8, 8, 8, 8);
-            iv.setImageResource(images[position]);
-            tv.setText(texts[position]);
-            return v;
         }
     }
 

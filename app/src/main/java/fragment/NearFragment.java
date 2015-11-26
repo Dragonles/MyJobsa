@@ -8,16 +8,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.SyncStateContract;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,9 +45,7 @@ import java.util.Map;
  */
 public class NearFragment extends Fragment {
 
-    SwipeRefreshLayout swipeRefreshLayout;
     ListView listView;
-    LinearLayout linear;
     NearFragmentAdapter nfadapter;
     List<String> list_nf;
     //声明变量
@@ -68,26 +63,6 @@ public class NearFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_near,container,false);
         listView = (ListViewForScrollView) v.findViewById(R.id.lv);
-        linear=(LinearLayout)v.findViewById(R.id.linner1);
-        swipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.sr);
-
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,android.R.color.holo_red_light,android.R.color.holo_green_light,android.R.color.holo_orange_light);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-            //    swipeRefreshLayout.setPadding(50, 100, 20, 20);
-//                listView.setLayoutParams(lp);
-//                tv.setText("正在刷新");
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setPadding(0, 0, 0, 0);
-//                        tv.setText("刷新成功");
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                },5000);
-            }
-        });
 
         //得到自身位置经纬度
         sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);

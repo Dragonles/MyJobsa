@@ -15,14 +15,14 @@ public class CompanyProve extends BmobObject{
     private String cp_address;
     private String cp_number;
     private String user_id;
-    private String prove_flag;
+    private Boolean prove_flag;
 
 
     public CompanyProve(){
 
     }
 
-    public CompanyProve(String cp_logo, String cp_companyperson, String cp_type, String cp_product, String cp_date, String cp_name, String cp_address, String cp_number, String user_id, String prove_flag) {
+    public CompanyProve(String cp_logo, String cp_companyperson, String cp_type, String cp_product, String cp_date, String cp_name, String cp_address, String cp_number, String user_id, Boolean prove_flag) {
         this.cp_logo = cp_logo;
         this.cp_companyperson = cp_companyperson;
         this.cp_type = cp_type;
@@ -107,11 +107,11 @@ public class CompanyProve extends BmobObject{
         this.user_id = user_id;
     }
 
-    public String getProve_flag() {
+    public Boolean getProve_flag() {
         return prove_flag;
     }
 
-    public void setProve_flag(String prove_flag) {
+    public void setProve_flag(Boolean prove_flag) {
         this.prove_flag = prove_flag;
     }
 }

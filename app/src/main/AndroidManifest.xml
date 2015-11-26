@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.job.activity" >
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -67,9 +66,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        <activity android:name=".AllClassActivity"
-            android:label="allclass"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".DingweiActivity"
             android:label="@string/title_activity_dingwei"
@@ -91,11 +87,12 @@
         </activity>
         <activity
             android:name=".UpdateInformationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/title_activity_update_information" >
         </activity>
-        <activity android:name=".CreatJianliActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:label="createjiali"></activity>
+        <!-- 城市列表 -->
+        <activity android:name="com.gugalor.citylist.CityList"></activity>
+        <activity android:name="com.gugalor.citylist.searchactivity"></activity>
 
     </application>
 

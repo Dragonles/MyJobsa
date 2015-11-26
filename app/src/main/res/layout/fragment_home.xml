@@ -28,9 +28,7 @@
                 android:padding="10dp"
                 android:id="@+id/home_search_edit"
                 android:background="@drawable/qzone_pictureviewer_operation_bg"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:id="@+id/home_search_img"
@@ -39,7 +37,6 @@
                     android:layout_marginRight="5dp"
                     android:background="@drawable/button_search"/>
                 <EditText
-                    android:id="@+id/et_sousuo"
                     android:layout_width="match_parent"
                     android:layout_toRightOf="@id/home_search_img"
                     android:background="@null"
