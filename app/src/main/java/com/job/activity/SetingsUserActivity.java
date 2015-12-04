@@ -3,20 +3,24 @@ package com.job.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.bmob.BTPFileResponse;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
 import com.job.bean.User;
+import com.job.utils.PushTestReceiver;
 
 import java.io.File;
 import java.util.List;
@@ -45,7 +49,9 @@ public class SetingsUserActivity extends AppCompatActivity {
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     private Matcher matcher;
+    Button back;
     private String mFilePath;//图片路径
+
     private  static  final int REQUEST_IMAGE=2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +61,69 @@ public class SetingsUserActivity extends AppCompatActivity {
          usernameWrapper = (TextInputLayout)findViewById(R.id.usernameWrapper);
         passwordWrapper=(TextInputLayout)findViewById(R.id.passwordWrapper);
         password2Wrapper=(TextInputLayout)findViewById(R.id.pass2Wrapper);
-        emailWrapper=(TextInputLayout)findViewById(R.id.emailWrapper);
+       // emailWrapper=(TextInputLayout)findViewById(R.id.emailWrapper);
         mheadlog=(CircleImageView)findViewById(R.id.touxiang);
         //带有滚动效果的 hint
-        usernameWrapper.setHint("Username");
-        passwordWrapper.setHint("Password");
-        password2Wrapper.setHint("PassWord Agin");
-        emailWrapper.setHint("Email");
-        Bmob.initialize(this, "e98c629c488e891e6d090798dd2ced7f");
+        usernameWrapper.setHint("请输入昵称");
+        passwordWrapper.setHint("请设置密码");
+        back=(Button)findViewById(R.id.back);
+        if (RegisteredActivity.intents==true)
+                {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(SetingsUserActivity.this);
+                    back.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            builder.setTitle("请设置账户信息");
+                            builder.setCancelable(true);
+                            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                    });
+                }
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SetingsUserActivity.this.finish();
+//                if (RegisteredActivity.intents==true)
+//                {
+//                    final AlertDialog.Builder builder = new AlertDialog.Builder(CreatJianliActivity.this);
+//                    yaoqiu.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            builder.setTitle("类型选择");
+//                            builder.setIcon(android.R.drawable.button_onoff_indicator_off);
+//                            builder.setCancelable(true);
+//                            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                }
+//                            });
+//                            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//
+//                                }
+//                            });
+//                            AlertDialog alert = builder.create();
+//                            alert.show();
+//                        }
+//                    });
+//                }
+//            }
+//        });
+        password2Wrapper.setHint("请重新输入密码");
+        Bmob.initialize(this, "e98c629c488e891e6d090798dd2ced7f");
         mheadlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,27 +143,11 @@ public class SetingsUserActivity extends AppCompatActivity {
         final String username = usernameWrapper.getEditText().getText().toString();
         final String password = passwordWrapper.getEditText().getText().toString();
         final String password2=password2Wrapper.getEditText().getText().toString();
-        final String email=emailWrapper.getEditText().getText().toString();
+      //  final String email=emailWrapper.getEditText().getText().toString();
         Log.i("code", "ha");
+        Intent intent = getIntent();
+        phonenumber = intent.getStringExtra("phone");
 
-//        User gameScore = new User();
-//        Log.i("code","hass");
-//        gameScore.setUsername(username);
-//        gameScore.save(SetingsUserActivity.this, new SaveListener() {
-//            @Override
-//            public void onSuccess() {
-//                // TODO Auto-generated method stub
-//                //  toast("添加数据成功，返回objectId为：" + gameScore.getObjectId() + ”, 数据在服务端的创建时间为：“ + gameScore.getCreatedAt())
-//                //;
-//            }
-//
-//            @Override
-//            public void onFailure(int code, String arg0) {
-//                // TODO Auto-generated method stub
-//                // 添加失败
-//                Log.i("code", code + arg0);
-//            }
-//        });
         if (usernameWrapper.getEditText()!=null)
         {
             if(username.length()<2)
@@ -118,25 +162,23 @@ public class SetingsUserActivity extends AppCompatActivity {
                     passwordWrapper.setErrorEnabled(false);
                     if (password2.equals(password)) {
                         password2Wrapper.setErrorEnabled(false);
-                        if (!validateEmail(email)) {
-                            emailWrapper.setError("邮箱格式不对");
-                        } else {
-                            emailWrapper.setErrorEnabled(false);
-                            Intent intent = getIntent();
-                              phonenumber = intent.getStringExtra("phone");
+//                            emailWrapper.setErrorEnabled(false);
                             final ProgressDialog pd = ProgressDialog.show(SetingsUserActivity.this, "等待上传", "");
                             Bmob.initialize(this, "e98c629c488e891e6d090798dd2ced7f");
                             BmobProFile.getInstance(getApplication()).upload(mFilePath, new UploadListener() {
                                 @Override
                                 public void onSuccess(String s, String s1, BmobFile bmobFile) {
-                                    Log.i("id", "qqqqqqqqqqqqqqqqq");
+                                    Log.i("id", phonenumber);
                                     BmobUser bmobUser = BmobUser.getCurrentUser(SetingsUserActivity.this);
                                     User user = new User();
                                     user.setUser_icon(bmobFile.getUrl());
                                     user.setUsername(username);
-                                    user.setPassword(password2);
-                                    user.setEmail(email);
                                     user.setMobilePhoneNumber(phonenumber);
+                                    user.setPassword(password2);
+                                    //            user.setEmail(email);
+                                    user.setChannel_id(PushTestReceiver.channe_id);
+                                    Log.i("cid",PushTestReceiver.channe_id);
+                                   // user.setMobilePhoneNumber(phonenumber);
                                     BmobQuery<User> query = new BmobQuery<User>();
                                     user.signUp(SetingsUserActivity.this, new SaveListener() {
                                         @Override
@@ -152,6 +194,7 @@ public class SetingsUserActivity extends AppCompatActivity {
                                         public void onFailure(int i, String s) {
                                             Log.i("cha", "onSuccess 失败" + s);
                                             pd.dismiss();
+                                            //  Toast.makeText(SetingsUserActivity.this, "您的手机号已注册，请重新输入", Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
@@ -168,9 +211,6 @@ public class SetingsUserActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                    } else {
-                        password2Wrapper.setError("两次密码必须输入一致");
-                    }
 
                 }
             }

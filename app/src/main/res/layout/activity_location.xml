@@ -3,73 +3,61 @@
     android:layout_height="match_parent"
     tools:context="com.job.activity.LocationActivity">
 
-
-    <RelativeLayout
-        android:id="@+id/rly_top"
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/first_linear"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#29BABD"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <TextView
+        android:layout_height="40dp"
+        android:background="@color/style_color"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:id="@+id/tv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@drawable/back"
-            android:textSize="22sp"
-            android:textColor="#fff"
-            android:paddingRight="20dp"
-            android:layout_marginRight="10dp"/>
-
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_serch_shape"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="10dp"
-            android:layout_alignBottom="@+id/tv_back"
-            android:layout_toRightOf="@+id/tv_back"
-            android:id="@+id/editText"
-            android:layout_toLeftOf="@+id/btn_linyi"
-            android:layout_toStartOf="@+id/btn_linyi" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_search_pressed"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="1dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/tv_back"
-            android:layout_toEndOf="@+id/tv_back"
-            />
-        <Button
-            android:id="@+id/btn_linyi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/btn_select_location"
-            android:text="临沂"
-            android:textColor="#FFF"
-            android:textSize="20sp"
-            android:background="@null"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/editText" />
-
-
-    </RelativeLayout>
-
+            android:layout_weight="1">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:id="@+id/editText"
+                android:textSize="12sp"
+                android:textColor="@color/home_hot_cebian"
+                android:background="@drawable/edit_serch_shape"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="3dp"
+            android:layout_weight="2">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:textSize="12sp"
+                android:id="@+id/ib_sousuo"
+                android:background="@drawable/login_buttons_style"
+                android:text="搜索"/>
+        </RelativeLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/lly_btn"
-        android:layout_below="@+id/rly_top"
+        android:layout_below="@+id/first_linear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
@@ -79,7 +67,7 @@
         <Button
             android:id="@+id/btn_gongzi"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="按工资排序"
             android:background="@drawable/location_style"
@@ -88,9 +76,9 @@
         <Button
             android:id="@+id/btn_diqu"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="按地区排序"
+            android:text="请选择地区"
             android:background="@drawable/location_style"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"/>
@@ -98,7 +86,7 @@
 
             android:id="@+id/btn_more"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="更多分类"
             android:background="@drawable/location_style"
@@ -106,10 +94,11 @@
 
     </LinearLayout>
 
+</LinearLayout>
     <ListView
         android:id="@+id/lv_fenlei"
         android:paddingTop="10dp"
-        android:layout_below="@+id/lly_btn"
+        android:layout_below="@+id/first_linear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 

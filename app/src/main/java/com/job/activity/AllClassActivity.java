@@ -1,15 +1,17 @@
 package com.job.activity;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.job.adapter.AllclassAdpter;
-import com.job.bean.All_class_item;
 import com.job.bean.Classify;
 
 import java.util.ArrayList;
@@ -28,35 +30,52 @@ public class AllClassActivity extends AppCompatActivity {
 
     List<Classify> mall_class_list =new ArrayList<>();
     ListView mlistview;
+    LinearLayout ls;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_class);
-        mlistview = (ListView)findViewById(R.id.all_class_listview);
-        Bmob.initialize(AllClassActivity.this, "e98c629c488e891e6d090798dd2ced7f");
-        BmobQuery<Classify> query = new BmobQuery<Classify>();
-        final ProgressDialog pd = ProgressDialog.show(AllClassActivity.this, "正在加载", "");
-        query.findObjects(this, new FindListener<Classify>() {
+        mlistview=(ListView)findViewById(R.id.all_class_listview);
+        ls=(LinearLayout)findViewById(R.id.backs);
+        ls.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(List<Classify> object) {
-                // TODO Auto-generated method stub
-                pd.dismiss();
-                // toast("查询成功：共" + object.size() + "条数据。");
-                for (Classify gameScore : object) {
-                    mall_class_list.add(new Classify(gameScore.getClassify_name()));
-                }
-                mlistview.setAdapter(new AllclassAdpter(AllClassActivity.this,mall_class_list));
+            public void onClick(View v) {
+                AllClassActivity.this.finish();
+            }
+        });
+        Bmob.initialize(this, "e98c629c488e891e6d090798dd2ced7f");
+        BmobQuery<Classify> ci = new BmobQuery<>();
+        ci.findObjects(this, new FindListener<Classify>() {
+            @Override
+            public void onSuccess(List<Classify> list) {
+                mall_class_list = list;
+                mlistview.setAdapter(new AllclassAdpter(AllClassActivity.this, mall_class_list));
 
             }
 
             @Override
-            public void onError(int code, String msg) {
-                // TODO Auto-generated method stub
-                //toast("查询失败：" + msg);
+            public void onError(int i, String s) {
+                Toast.makeText(getApplicationContext(), "读取列表失败", Toast.LENGTH_LONG).show();
+            }
+        });
+        //mlistview 点击事件
+        mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(AllClassActivity.this, LocationActivity.class);
+                intent.putExtra("poskey", position);
+                startActivity(intent);
             }
         });
 
-        Log.i("im","allaclass");
+
+
+//        mall_class_list.add(new All_class_item("家政"));
+//        mall_class_list.add(new All_class_item("钟点工"));
+//        mall_class_list.add(new All_class_item("销售"));
+//        mall_class_list.add(new All_class_item("游戏代练"));
+//        mall_class_list.add(new All_class_item("促销"));
+//        mall_class_list.add(new All_class_item("派单"));
 
     }
 

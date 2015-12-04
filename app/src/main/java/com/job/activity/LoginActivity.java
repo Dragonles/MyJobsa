@@ -16,12 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.job.bean.User;
+import com.job.utils.PushTestReceiver;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * LoginActivity  登录页
@@ -68,30 +70,11 @@ public class LoginActivity extends Activity {
         btn_login_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog pd = ProgressDialog.show(LoginActivity.this, "", "");
+                final ProgressDialog pd = ProgressDialog.show(LoginActivity.this, "", "正在登录.....");
                 pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 pd.setCancelable(false);
                 Bmob.initialize(LoginActivity.this, "e98c629c488e891e6d090798dd2ced7f");
-                BmobUser bu2 = new BmobUser();
-                bu2.setUsername(edit_login_name.getText().toString());
-                bu2.setPassword(edit_login_pwd.getText().toString());
-                bu2.login(LoginActivity.this, new SaveListener() {
-                    @Override
-                    public void onSuccess() {
-                        // TODO Auto-generated method stub
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        LoginActivity.this.finish();
-                    }
-
-                    @Override
-                    public void onFailure(int code, String msg) {
-                        // TODO Auto-generated method stub
-                        Log.i("code",code+msg);
-                        Toast.makeText(LoginActivity.this, "用户名或密码输.入错误！", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                BmobUser.loginByAccount(LoginActivity.this, edit_login_name.getText().toString(), edit_login_pwd.getText().toString(), new LogInListener<User>() {
+                BmobUser.loginByAccount(LoginActivity.this, edit_login_name.getText()+"", edit_login_pwd.getText().toString(), new LogInListener<User>() {
 
                     @Override
                     public void done(User user, BmobException e) {
@@ -103,6 +86,21 @@ public class LoginActivity extends Activity {
                             startActivity(intent);
                             pd.dismiss();
                             LoginActivity.this.finish();
+                            User gameScore = new User();
+                            gameScore.setChannel_id(PushTestReceiver.channe_id);
+                            gameScore.update(LoginActivity.this,user.getObjectId(), new UpdateListener() {
+                                @Override
+                                public void onSuccess() {
+                                    // TODO Auto-generated method stub
+                                    Log.i("bmob", "chid更新成功：");
+                                }
+
+                                @Override
+                                public void onFailure(int code, String msg) {
+                                    // TODO Auto-generated method stub
+                                    Log.i("bmob", "chid更新失败：" + msg);
+                                }
+                            });
                         }
                         else {
                             Log.i("code2",e.toString());
@@ -127,7 +125,6 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisteredActivity.class);
                 startActivity(intent);
-                LoginActivity.this.finish();
             }
         });
 

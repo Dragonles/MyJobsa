@@ -15,12 +15,14 @@
             android:layout_height="wrap_content">
             <Button
                 android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/user_font_color"
+                android:onClick="back"
                 android:drawableLeft="@drawable/back"
-                android:background="@color/style_color"
-                android:text="返回"/>
+                android:background="@color/style_color"/>
         </LinearLayout>
+
         <com.job.activity.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -160,7 +162,7 @@
                         android:id="@+id/getdate"
                         android:layout_toRightOf="@+id/setbirth"
                         android:layout_height="wrap_content" />
-                    </RelativeLayout>
+                </RelativeLayout>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -187,12 +189,19 @@
                     android:gravity="center"
                     android:layout_weight="2"
                     android:text="学历:"/>
-                <EditText
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:id="@+id/setxueli"
-                    android:textColor="@color/public_font_color"/>
+                    android:layout_weight="6">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setxueli"
+                        android:background="@null"
+                        android:text="选择学历"
+                        android:textColor="@color/public_font_color"/>
+                </RelativeLayout>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -202,7 +211,44 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="@color/public_liner_color"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@color/user_font_color"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="工作要求:"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setyaoqiu"
+                        android:text="选择工作项"
+                        android:background="@null"
+                        android:textColor="@color/public_font_color"/>
+                </RelativeLayout>
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/public_liner_color"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
@@ -300,6 +346,80 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="@color/public_liner_color"/>
+
+            <!-- 增庆添加 -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:background="@color/user_font_color"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="邮箱:"/>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:id="@+id/setemail"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/public_font_color"/>
+                <TextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/public_liner_color"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:background="@color/user_font_color"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="手机号:"/>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:id="@+id/settel"
+                    android:maxLength="11"
+                    android:inputType="phone"
+                    android:textColor="@color/public_font_color"/>
+                <TextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/public_liner_color"/>
+
+
+            <!-- -->
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
@@ -315,7 +435,6 @@
                     android:text="创建简历 "
                     android:layout_weight="5"
                     android:id="@+id/jianli_submit"
-
                     android:textColor="@color/user_font_color"
                     android:background="@drawable/per_submit_style"
                     android:layout_height="wrap_content" />

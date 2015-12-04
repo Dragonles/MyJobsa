@@ -169,7 +169,7 @@
             android:textColor="#FFF"
             android:background="@null"
             android:textSize="12sp"
-            android:text="忘记密码?"/>
+            android:text="关于我们"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

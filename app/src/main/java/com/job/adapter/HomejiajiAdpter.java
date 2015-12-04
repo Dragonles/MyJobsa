@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.job.activity.R;
+import com.job.bean.CompanyRelease;
+import com.job.bean.Home_hot_item;
 import com.job.bean.Home_jiaji_item;
 
 import java.util.List;
@@ -17,9 +19,9 @@ import java.util.List;
  */
 public class HomejiajiAdpter  extends BaseAdapter{
 
-    private List<Home_jiaji_item> mjiaji_list;
+    private List<CompanyRelease> mjiaji_list;
     Context context;
-    public HomejiajiAdpter(Context context,List<Home_jiaji_item> mjiaji_list)
+    public HomejiajiAdpter(Context context,List<CompanyRelease> mjiaji_list)
     {
         this.context=context;
         this.mjiaji_list=mjiaji_list;
@@ -54,9 +56,9 @@ public class HomejiajiAdpter  extends BaseAdapter{
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        holder.hot_item_title.setText(mjiaji_list.get(position).getHot_title());
-        holder.hot_item_money.setText(mjiaji_list.get(position).getHot_moneny());
-        holder.hot_item_address.setText(mjiaji_list.get(position).getHot_address());
+        holder.hot_item_title.setText(mjiaji_list.get(position).getCr_position()+"需"+mjiaji_list.get(position).getCr_count()+"人");
+        holder.hot_item_money.setText(mjiaji_list.get(position).getCr_salary()+mjiaji_list.get(position).getCr_payments());
+        holder.hot_item_address.setText(mjiaji_list.get(position).getCr_address());
         return convertView;
     }
     class ViewHolder

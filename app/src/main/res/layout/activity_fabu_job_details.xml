@@ -12,16 +12,14 @@
         android:layout_alignParentTop="true"
         android:background="@color/fragment_fabu_title">
 
-        <TextView
+        <ImageButton
             android:id="@+id/fabuactivity_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:text="＜"
-            android:textSize="30sp"
-            android:textColor="#FFF"/>
+            android:background="@drawable/back"
+            android:layout_marginLeft="8dp"/>
         <TextView
             android:id="@+id/fragment_fabu_title01"
             android:layout_width="wrap_content"
@@ -64,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="我要应聘"
+                android:onClick="sendMessage"
                 android:textColor="#FFF"
                 android:background="@drawable/btn_background_icon_login"/>
         </LinearLayout>
@@ -220,7 +219,7 @@
                             android:paddingLeft="20dp"
                             android:drawableLeft="@drawable/shu"
                             android:drawablePadding="8dp"
-                            android:text="薪资："
+                            android:text="人数："
                             android:textSize="18sp"
                             android:textColor="#47484a"/>
                         <TextView
@@ -307,7 +306,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/text_fabu_zhiwei"
+                                android:id="@+id/text_fabu_yaoqiu"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="30dp"

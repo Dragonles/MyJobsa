@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.job.activity.R;
 import com.job.bean.CompanyRelease;
+import com.job.bean.Home_hot_item;
 
 import java.util.List;
 
@@ -47,14 +49,16 @@ public class HomehotAdpter extends BaseAdapter{
             holder.hot_item_title=(TextView)convertView.findViewById(R.id.hot_item_title);
             holder.hot_item_money=(TextView)convertView.findViewById(R.id.hot_item_money);
             holder.hot_item_address=(TextView)convertView.findViewById(R.id.hot_item_address);
+            holder.mannumber=(TextView)convertView.findViewById(R.id.person_number);
             convertView.setTag(holder);
         }
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        holder.hot_item_title.setText(mhot_list.get(position).getTitle());
-        holder.hot_item_money.setText(mhot_list.get(position).getCr_salary());
+        holder.hot_item_title.setText(mhot_list.get(position).getCr_position()+"");
+        holder.hot_item_money.setText(mhot_list.get(position).getCr_salary()+mhot_list.get(position).getCr_payments());
         holder.hot_item_address.setText(mhot_list.get(position).getCr_address());
+        holder.mannumber.setText(mhot_list.get(position).getCr_count()+"人");
         return convertView;
     }
     class ViewHolder {
@@ -62,6 +66,6 @@ public class HomehotAdpter extends BaseAdapter{
         public TextView hot_item_title;
         public TextView hot_item_money;
         public TextView hot_item_address;
-
+        public TextView mannumber;
     }
 }

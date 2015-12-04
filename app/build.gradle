@@ -31,11 +31,15 @@ dependencies {
     compile 'cn.bmob.android:bmob-push:0.6'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile project(':multi-image-selector')
+    compile project(':pinyinSearch')
     compile files('libs/open_sdk_r5509.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     //bmob-sms ：Bmob单独为短信服务提供的包
     compile 'cn.bmob.android:bmob-sms:1.0.1'
     compile files('libs/AMap_Location_v2.0.0_20151117.jar')
-    compile project(':citylist')
+    compile files('src/main/jniLibs/pushservice-4.5.6.88.jar')
+
+    compile 'com.android.support:support-v4:+'
+    compile project(':framework-picker')
 }

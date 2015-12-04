@@ -2,10 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/login_style_color"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:id="@+id/all_calss_text"
             android:textColor="@color/style_color"
             android:text="家政"/>

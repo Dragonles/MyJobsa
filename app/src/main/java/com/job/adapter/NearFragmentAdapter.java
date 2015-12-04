@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.job.activity.R;
+import com.job.bean.CompanyRelease;
 
 import java.util.List;
 
@@ -17,11 +18,17 @@ import java.util.List;
  */
 public class NearFragmentAdapter extends BaseAdapter {
     Context context;
-    List<String> list_nf;
-    public NearFragmentAdapter(Context context, List<String> list_nf) {
+    List<CompanyRelease> list_nf;
+    public NearFragmentAdapter(Context context, List<CompanyRelease> list_nf) {
         this.context = context;
-        this.list_nf = list_nf;
+        this.list_nf=list_nf;
     }
+
+    public NearFragmentAdapter(String cr_address, Integer cr_count, String cr_require) {
+
+    }
+
+
 
     @Override
     public int getCount() {

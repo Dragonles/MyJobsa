@@ -1,2 +1,3 @@
-include ':app', ':multi-image-selector', ':citylist'
-include ':pinyinSearch'
+include ':app', ':pinyinSearch'
+include  ':multi-image-selector'
+include 'pinyinSearch','framework-picker'

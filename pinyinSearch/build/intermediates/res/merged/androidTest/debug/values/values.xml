@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/E:/android/androidstudio/MyProjects/Job/pinyinSearch/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/F:/program/myjobsa/pinyinSearch/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <string name="app_name">PinyinSearch</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">

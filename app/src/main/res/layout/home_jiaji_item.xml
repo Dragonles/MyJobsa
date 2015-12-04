@@ -6,9 +6,10 @@
         android:layout_width="0dp"
         android:orientation="horizontal"
         android:layout_weight="1"
+        android:padding="5dp"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="7dp"
+            android:layout_width="3dp"
             android:layout_height="40dp"
             android:background="@color/loginout_button_color"/>
         <TextView
@@ -35,14 +36,15 @@
                 android:layout_width="match_parent"
                 android:id="@+id/hot_item_money"
                 android:gravity="right"
-                android:textColor="@color/public_font_color"
+                android:textColor="#489ce4"
                 android:layout_height="wrap_content"
                 android:text="薪资可面议"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:textColor="@color/public_font_color"
+                android:textColor="#2B2B2B"
+                android:layout_marginTop="5dp"
                 android:id="@+id/hot_item_address"
                 android:maxLines="1"
                 android:layout_below="@+id/hot_item_money"

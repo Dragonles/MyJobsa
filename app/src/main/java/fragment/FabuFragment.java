@@ -17,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.job.activity.AllClassActivity;
 import com.job.activity.FabuDetailsActivity;
 import com.job.activity.FabuJobDetailsActivity;
+import com.job.activity.LocationActivity;
 import com.job.activity.R;
 import com.job.utils.GridViewForScrollView;
 
@@ -52,7 +54,6 @@ public class FabuFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_fabu, container, false);
         fabutitle = (TextView) v.findViewById(R.id.fragment_fabu_title);
-        myfabu = (TextView) v.findViewById(R.id.fragment_fabu_myfabu);
         gridView = (GridViewForScrollView) v.findViewById(R.id.fragment_fa_gridview);
 
         Log.i("FabuFragmentflag",type+"");
@@ -60,12 +61,12 @@ public class FabuFragment extends Fragment {
         if (type){
             //true  求职者模式
             fabutitle.setText("选择求职类型");
-            myfabu.setText("兼职历史");
+         //   myfabu.setText("兼职历史");
             Log.i("FabuFragmentflag", "**********" + type);
         }else{
             //false  招聘者模式
             fabutitle.setText("选择发布类型");
-            myfabu.setText("我的发布");
+//            myfabu.setText("我的发布");
             Log.i("FabuFragmentflag","////////"+type);
         }
 
@@ -73,32 +74,37 @@ public class FabuFragment extends Fragment {
        gridView.setAdapter(new FabuFragmentAdapter(getActivity()));
 
         //TextView点击事件
-        myfabu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "点击了我的发布", Toast.LENGTH_LONG).show();
-            }
-        });
+//        myfabu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity().getApplicationContext(), "点击了我的发布", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         //GridView点击事件
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Toast.makeText(getActivity().getApplicationContext(), "点击了：" + position, Toast.LENGTH_SHORT).show();
-                //跳转到详情页
-                if (type) {
-                    //true  求职者模式  跳转到求职界面
-                    Intent intent = new Intent(getActivity().getApplicationContext(), FabuJobDetailsActivity.class);
+                if (position == 7) {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), AllClassActivity.class);
                     startActivity(intent);
                 } else {
-                    //false  招聘者模式  跳转到招聘页面
-                    Intent intent = new Intent(getActivity().getApplicationContext(), FabuDetailsActivity.class);
-                    startActivity(intent);
+                    //跳转到详情页
+                    if (type) {
+                        //true  求职者模式  跳转到求职界面
+                        Intent intent = new Intent(getActivity().getApplicationContext(), LocationActivity.class);
+                        intent.putExtra("poskey", position);
+                        startActivity(intent);
+                    } else {
+                        //false  招聘者模式  跳转到招聘页面
+                        Intent intent = new Intent(getActivity().getApplicationContext(), FabuDetailsActivity.class);
+                        startActivity(intent);
+                    }
                 }
-
             }
         });
-
 
 
 
@@ -120,12 +126,12 @@ public class FabuFragment extends Fragment {
         if (type){
             //true  求职者模式
             fabutitle.setText("选择求职类型");
-            myfabu.setText("兼职历史");
+        //    myfabu.setText("兼职历史");
             Log.i("FabuFragmentflag", "**********" + type+fabutitle.getText());
         }else{
             //false  招聘者模式
             fabutitle.setText("选择发布类型");
-            myfabu.setText("我的发布");
+         //   myfabu.setText("我的发布");
             Log.i("FabuFragmentflag","////////"+type+fabutitle.getText());
         }
     }
