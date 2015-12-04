@@ -15,7 +15,44 @@ public class UserRelease extends BmobObject {
     private String ur_work_time;
     private String ur_money;
     private String user_id;
+    private String ur_class;
+    private String is_jianli;
+    private String ur_requirement;
+    /**
+     * 增庆添加
+     * */
 
+    private String ur_email; // 邮箱
+    private String ur_tel; // 手机号
+
+    public String getUr_email() {
+        return ur_email;
+    }
+
+    public String getUr_requirement() {
+        return ur_requirement;
+    }
+
+    public void setUr_requirement(String ur_requirement) {
+        this.ur_requirement = ur_requirement;
+    }
+
+    public void setUr_email(String ur_email) {
+        this.ur_email = ur_email;
+    }
+
+    public String getUr_tel() {
+        return ur_tel;
+    }
+
+    public void setUr_tel(String ur_tel) {
+        this.ur_tel = ur_tel;
+    }
+
+
+    /**
+     *
+     * */
     public UserRelease() {
 
     }
@@ -92,8 +129,29 @@ public class UserRelease extends BmobObject {
         this.birthday = birthday;
     }
 
-    public UserRelease(String user_id,String ur_name, String ur_money, String ur_work_time, String ur_address, String ur_study, String birthday, String ur_sex, String ur_icon) {
+    public String getUr_class() {
+        return ur_class;
+    }
+
+    public void setUr_class(String ur_class) {
+        this.ur_class = ur_class;
+    }
+
+    public String getIs_jianli() {
+        return is_jianli;
+    }
+
+    public void setIs_jianli(String is_jianli) {
+        this.is_jianli = is_jianli;
+    }
+
+    public UserRelease(String ur_name, String ur_tel, String ur_email, String ur_class, String user_id, String ur_money, String ur_work_time, String ur_address, String ur_study, String birthday, String ur_sex, String ur_icon,String is_jianli
+    ,String ur_requirement) {
         this.ur_name = ur_name;
+        this.ur_tel = ur_tel;
+        this.ur_email = ur_email;
+        this.ur_class = ur_class;
+        this.user_id = user_id;
         this.ur_money = ur_money;
         this.ur_work_time = ur_work_time;
         this.ur_address = ur_address;
@@ -101,6 +159,7 @@ public class UserRelease extends BmobObject {
         this.birthday = birthday;
         this.ur_sex = ur_sex;
         this.ur_icon = ur_icon;
-        this.user_id=user_id;
+        this.is_jianli=is_jianli;
+        this.ur_requirement=ur_requirement;
     }
 }

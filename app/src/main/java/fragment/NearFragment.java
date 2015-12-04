@@ -36,11 +36,16 @@ import com.amap.api.maps.model.TextOptions;
 import com.job.activity.FabuJobDetailsActivity;
 import com.job.activity.R;
 import com.job.adapter.NearFragmentAdapter;
+import com.job.bean.CompanyRelease;
+import com.job.bean.UserRelease;
 import com.job.utils.ListViewForScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 
 /**
@@ -52,7 +57,7 @@ public class NearFragment extends Fragment {
     ListView listView;
     LinearLayout linear;
     NearFragmentAdapter nfadapter;
-    List<String> list_nf;
+    List<CompanyRelease> list_n =new ArrayList<>();
     //声明变量
     private MapView mapView;
     private AMap aMap;
@@ -75,9 +80,24 @@ public class NearFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-            //    swipeRefreshLayout.setPadding(50, 100, 20, 20);
-//                listView.setLayoutParams(lp);
-//                tv.setText("正在刷新");
+                BmobQuery<CompanyRelease> query = new BmobQuery<CompanyRelease>();
+                query.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+                    @Override
+                    public void onSuccess(List<CompanyRelease> object) {
+                        list_n.clear();
+                        for (CompanyRelease gameScore : object) {
+                            list_n.add(new CompanyRelease(gameScore.getCr_address(), gameScore.getCr_require(), gameScore.getCr_count()));
+                            Log.i("adddd",gameScore.getCr_address() );
+                        }
+                        nfadapter = new NearFragmentAdapter(getActivity().getApplicationContext(), list_n);
+                        listView.setAdapter(nfadapter);
+
+                    }
+
+                    @Override
+                    public void onError(int code, String msg) {
+                    }
+                });
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -85,10 +105,18 @@ public class NearFragment extends Fragment {
 //                        tv.setText("刷新成功");
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                },5000);
+                }, 5000);
             }
         });
 
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), FabuJobDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
         //得到自身位置经纬度
         sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
         x = Double.valueOf(sp.getString("x", "11"));
@@ -135,16 +163,7 @@ public class NearFragment extends Fragment {
         Log.i("suofanfang", mZoom + "");
 
         //listview适配器
-        nfadapter = new NearFragmentAdapter(getActivity().getApplicationContext(),list_nf);
-        listView.setAdapter(nfadapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), FabuJobDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return v;
     }

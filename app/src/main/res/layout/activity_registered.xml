@@ -17,7 +17,7 @@
             android:text="←"
             android:textStyle="bold"
             android:background="@null"
-            android:id="@+id/login_jumbp"
+            android:id="@+id/back"
             android:textColor="@color/user_font_color"
             android:layout_height="wrap_content" />
         <TextView

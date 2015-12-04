@@ -37,23 +37,28 @@ import cn.bmob.v3.listener.SaveListener;
 import fragment.PerFragment;
 import me.nereo.imagechoose.MultiImageSelectorActivity;
 
+/**
+ *
+ * 公司认证
+ *
+ */
 public class CompanyProveActivity extends AppCompatActivity {
 
     EditText cp_product,cp_name,cp_address,cp_number;
     Button cp_type,msubmit,cp_date;
-    ImageView co_logo;
+    CircleImageView co_logo;
     public static EditText cp_person;
     private  static  final int REQUEST_IMAGE=2;
     private String mFilePath;
     String[] splist;
+    int sp=1;
     DatePicker dp;
     Calendar ca;
-    int sp=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_prove);
-        co_logo=(ImageView)findViewById(R.id.cp_logo);
+        co_logo=(CircleImageView)findViewById(R.id.cp_logo);
         cp_address=(EditText)findViewById(R.id.cp_address);
         cp_date=(Button)findViewById(R.id.cp_date);
         cp_person=(EditText)findViewById(R.id.cp_companyperson);

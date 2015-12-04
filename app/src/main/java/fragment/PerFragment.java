@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +22,16 @@ import com.job.activity.AboutWeActivity;
 import com.job.activity.CircleImageView;
 import com.job.activity.CompanyProveActivity;
 import com.job.activity.CreatJianliActivity;
+import com.job.activity.FabuDetailsActivity;
+import com.job.activity.FankuiActivity;
+import com.job.activity.JifenActivity;
+import com.job.activity.JobShouruActivity;
 import com.job.activity.LoginActivity;
+import com.job.activity.MessageActivity;
+import com.job.activity.MyRecruitActivity;
 import com.job.activity.R;
+import com.job.activity.RecruitHistoryActivity;
+import com.job.activity.UpdateInformationActivity;
 import com.job.bean.CompanyProve;
 import com.job.bean.User;
 import com.squareup.picasso.Picasso;
@@ -49,22 +59,50 @@ public class PerFragment extends Fragment {
     public static  Button btn_renzheng;            //认证按钮
     TextView txt_jianzhilishi,txt_yaoqing,txt_zhaopin,usrname;      //兼职历史    邀请好友    招聘信用
     TextView tv_about;
+    TextView xiaoxi;  //消息中心
     Button login_out,jianli;
+    LinearLayout history,idea;
+    ImageView iv_job_history_img,iv_job_friends_img,iv_job_xinyong_img;
     CircleImageView usericon;
+    LinearLayout user_message,jifen;
+    boolean zq = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_per,container,false);
+        xiaoxi = (TextView) v.findViewById(R.id.xiaoxi);
         btn_renzheng = (Button) v.findViewById(R.id.btn_renzheng);
         txt_jianzhilishi = (TextView) v.findViewById(R.id.txt_jianzhilishi);
         txt_yaoqing = (TextView) v.findViewById(R.id.txt_yaoqing);
+        history=(LinearLayout)v.findViewById(R.id.history);
         txt_zhaopin = (TextView) v.findViewById(R.id.txt_zhaopin);
         checkBox = (CheckBox) v.findViewById(R.id.mode);
+        user_message=(LinearLayout)v.findViewById(R.id.user_message);
         tv_about = (TextView) v.findViewById(R.id.tv_about);
         usericon=(CircleImageView)v.findViewById(R.id.user_img);
         usrname=(TextView)v.findViewById(R.id.username);
         login_out=(Button)v.findViewById(R.id.login_outs);
+        jifen=(LinearLayout)v.findViewById(R.id.jifen);
+        idea=(LinearLayout)v.findViewById(R.id.idea);
         jianli=(Button)v.findViewById(R.id.jianli);
+        iv_job_history_img = (ImageView) v.findViewById(R.id.job_history_img);
+        iv_job_friends_img = (ImageView) v.findViewById(R.id.job_friends_img);
+        iv_job_xinyong_img = (ImageView) v.findViewById(R.id.job_xinyong_img);
+        idea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), FankuiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        user_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), UpdateInformationActivity.class);
+                startActivity(intent);
+            }
+        });
         jianli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +110,22 @@ public class PerFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //消息中心
+        xiaoxi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zq) {
+                    //求职者模式
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MessageActivity.class);
+                    startActivity(intent);
+                }else {
+                    //招聘者模式
+
+                }
+            }
+        });
+
         Bmob.initialize(getActivity(), "e98c629c488e891e6d090798dd2ced7f");
         final BmobUser bmobUser = BmobUser.getCurrentUser(getActivity());
         if(bmobUser != null){
@@ -126,6 +180,7 @@ public class PerFragment extends Fragment {
                     Log.i("bilibili","未登录");
                     login_out.setText("请登录");
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    getActivity().finish();
                     startActivity(intent);
                 }
             }
@@ -141,17 +196,24 @@ public class PerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (checkBox.isChecked()){
+                    zq = false;
                     /** false 变为招聘
                      *  改变为招聘者模式
                      */
                     txt_jianzhilishi.setText("发布岗位");
-                    txt_yaoqing.setText("招聘历史");
+                    txt_yaoqing.setText("我的发布");
                     txt_zhaopin.setText("招聘信用");
                     btn_renzheng.setVisibility(View.VISIBLE);
-
+                    iv_job_xinyong_img.setBackgroundResource(R.drawable.button_credit);  //招聘信用
+                    iv_job_friends_img.setBackgroundResource(R.drawable.button_jobhistory);  //招聘历史
+                    iv_job_history_img.setBackgroundResource(R.drawable.button_releasehistory);  //发布岗位
+                    //传递数据
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean("type", false);
+                    editor.commit();
                     BmobUser bu = BmobUser.getCurrentUser(getActivity());
                     BmobQuery<CompanyProve> cpbq = new BmobQuery<CompanyProve>();
-                    Log.i("ddfdfdfdf", "" + bu.getObjectId());
+//                    Log.i("ddfdfdfdf", "" + bu.getObjectId());
                     if (bu != null) {
                         cpbq.addWhereEqualTo("user_id", bu.getObjectId());
                         cpbq.findObjects(getActivity(), new FindListener<CompanyProve>() {
@@ -180,27 +242,102 @@ public class PerFragment extends Fragment {
                             }
                         });
                     }
-
-
-                    //传递数据
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putBoolean("type",false);
-                    editor.commit();
-                    Log.i("CheckBoxPer", sp.getBoolean("type",false)+"");
                 }else{
+                    zq = true;
                     /** true 变为求职
                      *  改变为求职者模式
                      */
                     txt_jianzhilishi.setText("兼职历史");
-                    txt_yaoqing.setText("邀请好友兼职");
+                    txt_yaoqing.setText("我的积分");
                     txt_zhaopin.setText("兼职收入");
                     btn_renzheng.setVisibility(View.GONE);
-
+                    iv_job_xinyong_img.setBackgroundResource(R.drawable.button_money);  //兼职收入
+                    iv_job_friends_img.setBackgroundResource(R.drawable.button_friends);  //邀请好友兼职
+                    iv_job_history_img.setBackgroundResource(R.drawable.button_jobhistory);  //兼职历史
                     //传递数据
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putBoolean("type",true);
                     editor.commit();
                     Log.i("CheckBoxPer", sp.getBoolean("type",true)+"");
+                }
+            }
+        });
+        //兼职收入
+        txt_zhaopin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zq){
+                    //求职者
+                    Log.i("perfragmentss","求职者");
+                    Intent intent = new Intent(getActivity(), JobShouruActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getActivity().getApplicationContext(),"求职者",Toast.LENGTH_LONG).show();
+
+                }else{
+                    //招聘者
+                    Log.i("perfragmentss", "招聘者");
+                    Toast.makeText(getActivity().getApplicationContext(),"招聘者",Toast.LENGTH_LONG).show();
+
+//                            Intent intent = new Intent(getActivity(), MyRecruitActivity.class);
+//                            startActivity(intent);
+                }
+            }
+        });
+        jifen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zq) {
+                    //求职者
+                    Intent intent =new Intent(getActivity(),JifenActivity.class);
+                    startActivity(intent);
+                    Log.i("perfragmentss", "求职者   我的积分");
+                    Toast.makeText(getActivity().getApplicationContext(), "求职者", Toast.LENGTH_LONG).show();
+                } else {
+                    //招聘者
+                    Log.i("perfragmentss", "招聘者");
+                    Intent intent = new Intent(getActivity(), MyRecruitActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zq){
+                    //求职者
+                    Log.i("perfragmentss", "求职者");
+                    Intent intent = new Intent(getActivity(), RecruitHistoryActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getActivity().getApplicationContext(),"求职者",Toast.LENGTH_LONG).show();
+
+                }else{
+                    //招聘者
+                    Log.i("perfragmentss", "招聘者");
+                    Toast.makeText(getActivity().getApplicationContext(),"招聘者",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getActivity(), FabuDetailsActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
+        txt_jianzhilishi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zq){
+                    //求职者
+                    Log.i("perfragmentss","求职者");
+                    Intent intent = new Intent(getActivity(), RecruitHistoryActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getActivity().getApplicationContext(),"求职者",Toast.LENGTH_LONG).show();
+
+                }else{
+                    //招聘者
+                    Log.i("perfragmentss","招聘者");
+                    Toast.makeText(getActivity().getApplicationContext(),"招聘者",Toast.LENGTH_LONG).show();
+
+//                            Intent intent = new Intent(getActivity(), MyRecruitActivity.class);
+//                            startActivity(intent);
                 }
             }
         });
@@ -212,7 +349,23 @@ public class PerFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        jifen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zq) {
+                    //求职者
+                    Intent intent =new Intent(getActivity(),JifenActivity.class);
+                    startActivity(intent);
+                    Log.i("perfragmentss", "求职者   我的积分");
+                    Toast.makeText(getActivity().getApplicationContext(), "求职者", Toast.LENGTH_LONG).show();
+                } else {
+                    //招聘者
+                    Log.i("perfragmentss", "招聘者");
+                    Intent intent = new Intent(getActivity(), MyRecruitActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         return v;
         // Inflate the layout for this com.job.fragment
         // return inflater.inflate(R.layout.fragment_per, container, false);

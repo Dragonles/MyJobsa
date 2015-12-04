@@ -1,208 +1,232 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/login_style_color">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-        <com.job.activity.CircleImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/touxiang"
-            android:background="@drawable/settings_carmear_img"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dp">
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
+        android:gravity="left"
+        android:id="@+id/top_linear"
         android:orientation="vertical"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <Button
+            android:layout_width="wrap_content"
+            android:text="←"
+            android:textStyle="bold"
+            android:background="@null"
+            android:id="@+id/back"
+            android:textColor="@color/user_font_color"
+            android:layout_height="wrap_content" />
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-
-                    android:layout_height="wrap_content" />
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="7"
-                    android:layout_height="wrap_content">
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/usernameWrapper "
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:textSize="12sp"
-                            android:inputType="text"
-                            android:maxLength="10"
-                            android:textColor="#2B2B2B"
-                            android:hint="Username"
-                            android:padding="10dp"
-                            android:background="@drawable/edit_login_select"
-                            android:layout_height="wrap_content" />
-                        <requestFocus />
-                    </android.support.design.widget.TextInputLayout>
-
-                </RelativeLayout>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-
-                    android:layout_height="wrap_content" />
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="7"
-                    android:layout_height="wrap_content">
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/passwordWrapper"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:textSize="12sp"
-                            android:textColor="#2B2B2B"
-                            android:inputType="textPassword"
-                            android:hint="PassWord"
-                            android:maxLength="20"
-                            android:padding="10dp"
-                            android:background="@drawable/edit_login_select"
-                            android:layout_height="wrap_content" />
-                    </android.support.design.widget.TextInputLayout>
-                </RelativeLayout>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="7"
-                    android:layout_height="wrap_content">
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/pass2Wrapper"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:textSize="12sp"
-                            android:inputType="textPassword"
-                            android:textColor="#2B2B2B"
-                            android:hint="PassWord Agin"
-                            android:padding="10dp"
-                            android:maxLength="20"
-                            android:background="@drawable/edit_login_select"
-                            android:layout_height="wrap_content" />
-                    </android.support.design.widget.TextInputLayout>
-                </RelativeLayout>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="7"
-                    android:layout_height="wrap_content">
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/emailWrapper"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:textSize="12sp"
-                            android:inputType="text"
-                            android:textColor="#2B2B2B"
-                            android:hint="Email"
-                            android:padding="10dp"
-                            android:background="@drawable/edit_login_select"
-                            android:layout_height="wrap_content" />
-                    </android.support.design.widget.TextInputLayout>
-                </RelativeLayout>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
+            android:background="@color/public_liner_color"
+            android:layout_height="1dp" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"></LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="7"
-            android:text="完成"
-            android:onClick="yanzheng"
-            android:textColor="@color/user_font_color"
-            android:background="@drawable/btn_login_submit_style"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <com.job.activity.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/touxiang"
+                android:background="@drawable/settings_carmear_img"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="7"
+                        android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/usernameWrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:textSize="12sp"
+                                android:inputType="text"
+                                android:maxLength="10"
+                                android:textColor="#2B2B2B"
+                                android:hint="Username"
+                                android:padding="10dp"
+                                android:background="@drawable/edit_login_select"
+                                android:layout_height="wrap_content" />
+                            <requestFocus />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="7"
+                        android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/passwordWrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:textSize="12sp"
+                                android:textColor="#2B2B2B"
+                                android:inputType="textPassword"
+                                android:hint="PassWord"
+                                android:maxLength="20"
+                                android:padding="10dp"
+                                android:background="@drawable/edit_login_select"
+                                android:layout_height="wrap_content" />
+                        </android.support.design.widget.TextInputLayout>
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="7"
+                        android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/pass2Wrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:textSize="12sp"
+                                android:inputType="textPassword"
+                                android:textColor="#2B2B2B"
+                                android:hint="PassWord Agin"
+                                android:padding="10dp"
+                                android:maxLength="20"
+                                android:background="@drawable/edit_login_select"
+                                android:layout_height="wrap_content" />
+                        </android.support.design.widget.TextInputLayout>
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="7"
+                        android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/emailWrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:textSize="12sp"
+                                android:inputType="text"
+                                android:textColor="#2B2B2B"
+                                android:hint="Email"
+                                android:padding="10dp"
+                                android:background="@drawable/edit_login_select"
+                                android:layout_height="wrap_content" />
+                        </android.support.design.widget.TextInputLayout>
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"></LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:text="完成"
+                android:onClick="yanzheng"
+                android:textColor="@color/user_font_color"
+                android:background="@drawable/btn_login_submit_style"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+         </LinearLayout>
+    </ScrollView>
 </LinearLayout>

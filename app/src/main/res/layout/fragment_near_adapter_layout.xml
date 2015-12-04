@@ -69,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="派单员3名"
+            android:text="安保"
             android:gravity="center"
             android:textColor="@color/public_font_color"
             android:textSize="12sp"
@@ -82,7 +82,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50/天"
+            android:text="2345/月结"
             android:textColor="@color/loginout_button_color"
             android:textSize="12sp"
             android:id="@+id/text_near_money"

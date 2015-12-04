@@ -1,6 +1,7 @@
 package fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +26,22 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.gugalor.citylist.CityList;
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 import com.job.activity.AllClassActivity;
+import com.job.activity.FabuJobDetailsActivity;
+import com.job.activity.LocationActivity;
 import com.job.activity.R;
+import com.job.activity.UserJianliDetailsActivity;
+import com.job.adapter.HomeJianliAdapter;
 import com.job.adapter.HomehotAdpter;
 import com.job.adapter.HomejiajiAdpter;
+import com.job.bean.CompanyProve;
 import com.job.bean.CompanyRelease;
 import com.job.bean.Home_jiaji_item;
+import com.job.bean.Qiandao;
+import com.job.bean.UserRelease;
+import com.job.citylist.CityList;
 import com.job.utils.GridViewForScrollView;
 import com.job.utils.ListViewForScrollView;
 
@@ -38,8 +50,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * 主页框架
@@ -47,11 +63,24 @@ import cn.bmob.v3.listener.FindListener;
  */
 public class HomeFragment extends Fragment {
 
-    List<CompanyRelease> mhot_list = new ArrayList<>();
-    List<Home_jiaji_item> mjiaji_list = new ArrayList<>();
-    ListView mhot_listview,mjiaji_listview;
+    List<CompanyRelease> mhot_list = new ArrayList<>();      //热门list
+    List<CompanyRelease> mjiaji_list = new ArrayList<>();  //加急list
+    List<UserRelease> mjianli_list = new ArrayList<>();     //简历list
+    HomeJianliAdapter homeJianliAdapter;    //简历adapter
+    HomejiajiAdpter homejiajiAdpter;
+    HomehotAdpter homehotAdpter;
+    ListView mhot_listview,mjiaji_listview;   //热门listview   加急listview
     TextView text_city,qiandao;
+     int Jifen=0;
     ImageView qiandaoimg;
+    EditText edit_sousuo;   //顶部搜索框
+
+    TextView txt_jiaji;     //加急TextView
+    LinearLayout linear_remen;
+    SharedPreferences spf;
+    boolean type = true;
+
+
     private GridView mgv;
     private String MY_RMBCost ="MY_RMBCost";
     private String TodayTime ="TodayTime";
@@ -70,6 +99,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -77,8 +107,26 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this com.job.fragment
         View v = inflater.inflate(R.layout.fragment_home,container,false);
+        edit_sousuo = (EditText) v.findViewById(R.id.edit_sousuo);
+        linear_remen = (LinearLayout) v.findViewById(R.id.linear_remen);
+        txt_jiaji = (TextView) v.findViewById(R.id.txt_jiaji);
+
+        //设置模式开关传递，，接收  默认为true
+        spf = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
+        type = spf.getBoolean("type", true);
+        Log.i("rtpess", ""+type);
+
+
+        final ProgressDialog pd = ProgressDialog.show(getActivity(), "", "正在加载数据.....");
         //传递数据
         final SharedPreferences sp = getActivity().getSharedPreferences("user_type", Context.MODE_PRIVATE);
+        edit_sousuo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), LocationActivity.class);
+                startActivity(intent);
+            }
+        });
         text_city = (TextView) v.findViewById(R.id.text_city);
 
         /**
@@ -97,9 +145,6 @@ public class HomeFragment extends Fragment {
 >>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3
             }
         });
-
-
-
         mgv=(GridViewForScrollView)v.findViewById(R.id.home_gridview);
         mgv.setAdapter(new GridViewAdpter(getActivity()));
         mhot_listview=(ListViewForScrollView)v.findViewById(R.id.home_hot_list);
@@ -124,44 +169,103 @@ public class HomeFragment extends Fragment {
         }
 
         //签到功能
-        qiandao.setOnClickListener(new View.OnClickListener() {
+        Bmob.initialize(getActivity(), "e98c629c488e891e6d090798dd2ced7f");
+        final BmobUser bmobUser = BmobUser.getCurrentUser(getActivity());
+        if(bmobUser != null){
+            qiandao.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    qiandao.setText("已签到！");
+                    qiandao.setTextSize(12);
+                    Jifen++;
+                    Bmob.initialize(getActivity(), "e98c629c488e891e6d090798dd2ced7f");
+                    BmobQuery<Qiandao> cpbq = new BmobQuery<Qiandao>();
+                    cpbq.addWhereEqualTo("user_id",bmobUser.getObjectId());
+                    cpbq.findObjects(getActivity(), new FindListener<Qiandao>() {
+                        @Override
+                        public void onSuccess(List<Qiandao> list) {
+                            if (list.size()!=0)
+                            {
+                                Qiandao gameScore = new Qiandao();
+                                gameScore.setJifen(Jifen+"");
+                                gameScore.update(getActivity(),list.get(0).getObjectId(), new UpdateListener() {
 
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                qiandao.setText("已签到！");
-                qiandao.setTextSize(12);
-               // qiandaoimg.setImageResource(R.drawable.conversation_needhandle_icon_normal);
-                SharedPreferences my_rmb_data = getActivity().getSharedPreferences(MY_RMBCost, 0);
-                if (my_rmb_data.getString(TodayTime, "").toString().equals(str) == true) {
-                    Toast.makeText(getActivity(), "今日已签到！", Toast.LENGTH_SHORT).show();
-                } else {
-                    my_rmb_data.edit()
-                            .putString(TodayTime, str)
-                            .commit();
-                    // qiandao.setText("日期："+ str +"已签到！");
-                    qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
-                    Toast.makeText(getActivity(), "签到成功！", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        BmobQuery<CompanyRelease> query = new BmobQuery<CompanyRelease>();
-        query.findObjects(getActivity(), new FindListener<CompanyRelease>() {
-            @Override
-            public void onSuccess(List<CompanyRelease> object) {
-                // TODO Auto-generated method stub
-              //  toast("查询成功：共" + object.size() + "条数据。");
-                for (CompanyRelease gameScore : object) {
-                    mhot_list.add(new CompanyRelease(gameScore.getTitle(),gameScore.getCr_salary(),gameScore.getCr_address()));
-                }
-                mhot_listview.setAdapter(new HomehotAdpter(getActivity(),mhot_list));
-            }
+                                    @Override
+                                    public void onSuccess() {
+                                        // TODO Auto-generated method stub
+                                        Log.i("bmob","更新成功：");
+                                    }
 
-            @Override
-            public void onError(int code, String msg) {
-                // TODO Auto-generated method stub
-              //  toast("查询失败：" + msg);
-            }
-        });
+                                    @Override
+                                    public void onFailure(int code, String msg) {
+                                        // TODO Auto-generated method stub
+                                        Log.i("bmob","更新失败："+msg);
+                                    }
+                                });
+                            }
+                            else {
+                                Qiandao gameScore = new Qiandao();
+                                gameScore.setJifen(Jifen+"");
+                                gameScore.setUser_id(bmobUser.getObjectId());
+                                gameScore.save(getActivity(), new SaveListener() {
+
+                                    @Override
+                                    public void onSuccess() {
+                                        // TODO Auto-generated method stub
+                                        //  toast("添加数据成功，返回objectId为："+gameScore.getObjectId() + ”,数据在服务端的创建时间为：“ + gameScore.getCreatedAt());
+                                    }
+
+                                    @Override
+                                    public void onFailure(int code, String arg0) {
+                                        // TODO Auto-generated method stub
+                                        // 添加失败
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onError(int i, String s) {
+
+                        }
+                    });
+                                        // qiandaoimg.setImageResource(R.drawable.conversation_needhandle_icon_normal);
+                    SharedPreferences my_rmb_data = getActivity().getSharedPreferences(MY_RMBCost, 0);
+                    if (my_rmb_data.getString(TodayTime, "").toString().equals(str) == true) {
+                        Toast.makeText(getActivity(), "今日已签到！", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        my_rmb_data.edit()
+                                .putString(TodayTime, str)
+                                .commit();
+                        // qiandao.setText("日期："+ str +"已签到！");
+                        qiandaoimg.setBackgroundResource(R.drawable.conversation_needhandle_icon_normal2);
+                        Toast.makeText(getActivity(), "签到成功！", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else{
+            //缓存用户对象为空时， 可打开用户注册界面…
+        }
+
+//        BmobQuery<CompanyRelease> query = new BmobQuery<CompanyRelease>();
+//        query.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+//            @Override
+//            public void onSuccess(List<CompanyRelease> object) {
+//                // TODO Auto-generated method stub
+//              //  toast("查询成功：共" + object.size() + "条数据。");
+//                for (CompanyRelease gameScore : object) {
+//                    mhot_list.add(new CompanyRelease(gameScore.getTitle(),gameScore.getCr_salary(),gameScore.getCr_address()));
+//                }
+//                mhot_listview.setAdapter(new HomehotAdpter(getActivity(),mhot_list));
+//            }
+//
+//            @Override
+//            public void onError(int code, String msg) {
+//                // TODO Auto-generated method stub
+//              //  toast("查询失败：" + msg);
+//            }
+//        });
         mgv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -172,8 +276,135 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-        mjiaji_listview.setAdapter(new HomejiajiAdpter(getActivity(), mjiaji_list));
-        mhot_listview.setAdapter(new HomehotAdpter(getActivity(), mhot_list));
+        Bmob.initialize(getActivity(), "e98c629c488e891e6d090798dd2ced7f");
+
+        Bmob.initialize(getActivity(), "e98c629c488e891e6d090798dd2ced7f");
+        //判断是招聘 还是 求职
+        Log.i("rtpess", "**" + type);
+        if (type){
+            //true  求职者模式
+            //获得加急数据
+            Log.i("rtpess", "求职者模式");
+            txt_jiaji.setText("加急：");
+            linear_remen.setVisibility(View.VISIBLE);
+
+            BmobQuery<CompanyRelease> crbq = new BmobQuery<>();
+//            BmobQuery<CompanyRelease> crbq = new BmobQuery<>();
+            crbq.addWhereEqualTo("cr_urgency", "true");
+            crbq.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+                @Override
+                public void onSuccess(List<CompanyRelease> list) {
+                    mjiaji_list = list;
+                    Log.i("sdsdsdsd", mjiaji_list.size() + "加急");
+                    homejiajiAdpter = new HomejiajiAdpter(getActivity().getApplicationContext(), mjiaji_list);
+                    mjiaji_listview.setAdapter(homejiajiAdpter);
+                    Log.i("rtpess", "求职*/*/者模式");
+
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Toast.makeText(getActivity().getApplicationContext(), "加载失败，请检查网络", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            //获得热门数据
+            BmobQuery<CompanyRelease> crbqj = new BmobQuery<>();
+            crbqj.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+                @Override
+                public void onSuccess(List<CompanyRelease> list) {
+                    mhot_list = list;
+                    Log.i("sdsdsdsd", mhot_list.size() + "热门");
+                    pd.dismiss();
+                    homehotAdpter = new HomehotAdpter(getActivity().getApplicationContext(), mhot_list);
+                    mhot_listview.setAdapter(homehotAdpter);
+                    Log.i("rtpess", "求职*/热门*/者模式");
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    pd.dismiss();
+                    Toast.makeText(getActivity().getApplicationContext(), "加载失败，请检查网络", Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+            Log.i("FabuFragmentflag", "**********" + type);
+        }else{
+            //false  招聘者模式
+            txt_jiaji.setText("推荐简历：");
+            //隐藏热门listview
+            linear_remen.setVisibility(View.GONE);
+            //获得简历数据
+            Log.i("rtpess", "招聘者模式"+type);
+
+            BmobQuery<UserRelease> urbq = new BmobQuery<>();
+            urbq.findObjects(getActivity(), new FindListener<UserRelease>() {
+                @Override
+                public void onSuccess(List<UserRelease> list) {
+                    mjianli_list = list;
+                    Log.i("rtpess", mjianli_list.size() + "简历");
+                    homeJianliAdapter = new HomeJianliAdapter(getActivity().getApplicationContext(), mjianli_list);
+                    mjiaji_listview.setAdapter(homeJianliAdapter);
+                    pd.dismiss();
+                    Log.i("rtpess", "招聘者/*/*/模式");
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Toast.makeText(getActivity().getApplicationContext(), "加载失败，请检查网络", Toast.LENGTH_LONG).show();
+                }
+            });
+            Log.i("FabuFragmentflag","////////"+type);
+        }
+
+        //加急/简历   listview  点击事件
+        mjiaji_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //判断是招聘 还是 求职
+                if (type) {
+                    //true  求职者模式
+                    //跳转到招聘信息详细页
+                    Intent jintent = new Intent(getActivity(), FabuJobDetailsActivity.class);
+                    jintent.putExtra("keyposj", position);
+                    startActivity(jintent);
+                }else {
+                    //false  招聘者模式
+                    //跳转到个人简历详细页
+                    Intent hotintent = new Intent(getActivity(), UserJianliDetailsActivity.class);
+                    hotintent.putExtra("keypos", position);
+                    startActivity(hotintent);
+                }
+            }
+        });
+
+        //热门listview 点击事件
+        mhot_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent hotintent = new Intent(getActivity(), FabuJobDetailsActivity.class);
+                hotintent.putExtra("keypos",position);
+                startActivity(hotintent);
+            }
+        });
+
+        //gridview点击事件
+        mgv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //更多按钮
+                if (position == 7) {
+                    Intent intent = new Intent(getActivity(), AllClassActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getActivity(), LocationActivity.class);
+                    intent.putExtra("poskey", position);
+                    startActivity(intent);
+                }
+            }
+        });
+
 
         text_city.setText("定位");
         //定位
@@ -239,7 +470,7 @@ public class HomeFragment extends Fragment {
         //设置是否返回地址信息（默认返回地址信息）
         mLocationOption.setNeedAddress(true);
         //设置是否只定位一次,默认为false
-        mLocationOption.setOnceLocation(false);
+        mLocationOption.setOnceLocation(true);
         //设置是否强制刷新WIFI，默认为强制刷新
         mLocationOption.setWifiActiveScan(true);
         //设置是否允许模拟位置,默认为false，不允许模拟位置
@@ -275,7 +506,6 @@ public class HomeFragment extends Fragment {
                 case 2:
                     text_city.setText(data.getStringExtra("city"));
                     break;
-
                 default:
                     break;
             }
@@ -317,6 +547,87 @@ public class HomeFragment extends Fragment {
             iv.setImageResource(images[position]);
             tv.setText(texts[position]);
             return v;
+        }
+    }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.i("rtpess", "4564646");
+        //显示正在加载的框
+        final ProgressDialog pds = ProgressDialog.show(getActivity(), "", "正在加载数据.....");
+        type = spf.getBoolean("type",true);
+        //判断是招聘 还是 求职
+        if (type){
+            //true  求职者模式
+            txt_jiaji.setText("加急：");
+
+            //隐藏热门listview
+            linear_remen.setVisibility(View.VISIBLE);
+            //获得加急数据
+            Log.i("rtpess","qiuzhi   1111111111");
+            BmobQuery<CompanyRelease> crbq = new BmobQuery<>();
+            crbq.addWhereEqualTo("cr_urgency", "true");
+            crbq.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+                @Override
+                public void onSuccess(List<CompanyRelease> list) {
+                    mjiaji_list = list;
+                    Log.i("sdsdsdsd", mjiaji_list.size() + "加急");
+                    homejiajiAdpter = new HomejiajiAdpter(getActivity().getApplicationContext(), mjiaji_list);
+                    mjiaji_listview.setAdapter(homejiajiAdpter);
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Toast.makeText(getActivity().getApplicationContext(), "加载失败，请检查网络", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            //获得热门数据
+            BmobQuery<CompanyRelease> crbqj = new BmobQuery<>();
+            crbqj.findObjects(getActivity(), new FindListener<CompanyRelease>() {
+                @Override
+                public void onSuccess(List<CompanyRelease> list) {
+                    mhot_list = list;
+                    Log.i("sdsdsdsd", mhot_list.size() + "热门");
+                    pds.dismiss();
+                    homehotAdpter = new HomehotAdpter(getActivity().getApplicationContext(), mhot_list);
+                    mhot_listview.setAdapter(homehotAdpter);
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    pds.dismiss();
+                    Toast.makeText(getActivity().getApplicationContext(), "加载失败，请检查网络", Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+            Log.i("FabuFragmentflag", "**********" + type);
+        }else{
+            //false  招聘者模式
+            txt_jiaji.setText("推荐简历：");
+
+            //隐藏热门listview
+            linear_remen.setVisibility(View.GONE);
+            //获得简历数据
+            BmobQuery<UserRelease> crbq = new BmobQuery<>();
+            crbq.findObjects(getActivity(), new FindListener<UserRelease>() {
+                @Override
+                public void onSuccess(List<UserRelease> list) {
+                    mjianli_list = list;
+                    Log.i("sdsdsdsd", mjiaji_list.size() + "加急");
+                    pds.dismiss();
+                    homeJianliAdapter = new HomeJianliAdapter(getActivity().getApplicationContext(), mjianli_list);
+                    mjiaji_listview.setAdapter(homeJianliAdapter);
+                    Log.i("rtpess","jianli 444444");
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Toast.makeText(getActivity().getApplicationContext(), "加载失败，请检查网络", Toast.LENGTH_LONG).show();
+                }
+            });
+            Log.i("FabuFragmentflag","////////"+type);
         }
     }
 

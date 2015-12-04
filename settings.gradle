@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-include  ':app'
-include ':pinyinSearch'
-include  ':multi-image-selector'
-=======
-include ':app', ':multi-image-selector', ':citylist'
-include ':pinyinSearch'
->>>>>>> d25eeba0516b750c0700752d203edecf295bc3d3

@@ -3,9 +3,11 @@ package com.job.activity;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.job.bean.Classify;
 import com.job.bean.CompanyProve;
 import com.job.bean.UserRelease;
 import com.squareup.picasso.Picasso;
@@ -40,15 +43,20 @@ import me.nereo.imagechoose.MultiImageSelectorActivity;
 
 public class CreatJianliActivity extends AppCompatActivity {
 
-    EditText name,xueli,jinyan,sarlary,address;
+    EditText name,jinyan,sarlary,address,email,tel; //  email tel 增庆添加
     RadioGroup radioGroup1;
-    Button chosebirth,submit,update;
+    Button chosebirth,submit,update,yaoqiu,xueli;
     RadioButton getboy,getgirl;
     String imgfile;
     CircleImageView user_img;
     TextView getdate;
     DatePicker dp;
+    String[] education = {"不限", "高中以下", "高中", "中专/技校", "大专", "本科",
+            "硕士" ,"博士", "MBA/EMBA"};  //学历
+
     String sexs;
+    String[] splist;
+    int sp=1;
     private String mFilePath;//图片路径
     private  static  final int REQUEST_IMAGE=2;
     Calendar ca;
@@ -57,7 +65,7 @@ public class CreatJianliActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creat_jianli);
         name=(EditText)findViewById(R.id.setname);
-        xueli=(EditText)findViewById(R.id.setxueli);
+        xueli=(Button)findViewById(R.id.setxueli);
         jinyan=(EditText)findViewById(R.id.setjingyan);
         ca = Calendar.getInstance();
         sarlary=(EditText)findViewById(R.id.setsalary);
@@ -71,8 +79,49 @@ public class CreatJianliActivity extends AppCompatActivity {
         getgirl=(RadioButton)findViewById(R.id.setwuman);
         update=(Button)findViewById(R.id.updatejianli);
         submit=(Button)findViewById(R.id.jianli_submit);
-        //name.setEnabled(false);
+        yaoqiu=(Button)findViewById(R.id.setyaoqiu);
 
+        xueli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder btnbuilder = new android.app.AlertDialog.Builder
+                        (CreatJianliActivity.this);
+                btnbuilder.setTitle("学历选择");
+                btnbuilder.setIcon(android.R.drawable.button_onoff_indicator_off);
+                btnbuilder.setCancelable(true);
+
+                btnbuilder.setPositiveButton("确认", new
+                        DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                btnbuilder.setNegativeButton("取消", new
+                        DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                btnbuilder.setSingleChoiceItems(education, 0, new
+                        DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                xueli.setText(education[which]);
+//                        zy = which;
+                            }
+                        });
+                android.app.AlertDialog alert = btnbuilder.create();
+                alert.show();
+            }
+        });
+        /**
+         * 增庆添加
+         * */
+        email = (EditText) findViewById(R.id.setemail);
+        tel = (EditText) findViewById(R.id.settel);
+
+        //name.setEnabled(false);
         radioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             /**
              *
@@ -126,6 +175,50 @@ public class CreatJianliActivity extends AppCompatActivity {
             }
 
         });
+        final BmobUser bmobUser = BmobUser.getCurrentUser(CreatJianliActivity.this);
+        final BmobQuery<Classify> cl = new BmobQuery<>();
+        cl.findObjects(CreatJianliActivity.this, new FindListener<Classify>() {
+            @Override
+            public void onSuccess(List<Classify> list) {
+                splist = new String[list.size()];
+                for (int i = 0; i < list.size(); i++) {
+                    splist[i] = list.get(i).getClassify_name();
+                }
+            }
+            @Override
+            public void onError(int i, String s) {
+                Log.i("classify", "fa");
+            }
+        });
+        final AlertDialog.Builder builder = new AlertDialog.Builder(CreatJianliActivity.this);
+        yaoqiu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.setTitle("类型选择");
+                builder.setIcon(android.R.drawable.button_onoff_indicator_off);
+                builder.setCancelable(true);
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setSingleChoiceItems(splist, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        yaoqiu.setText(splist[which]);
+                        sp = which+1;
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
         user_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +232,88 @@ public class CreatJianliActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_IMAGE);
             }
         });
+        Bmob.initialize(CreatJianliActivity.this, "e98c629c488e891e6d090798dd2ced7f");
+        BmobUser bu = BmobUser.getCurrentUser(CreatJianliActivity.this);
+        BmobQuery<UserRelease> cpbq = new BmobQuery<UserRelease>();
+        if (bu != null) {
+            final ProgressDialog pd = ProgressDialog.show(CreatJianliActivity.this, "", "正在加载数据.....");
+            cpbq.addWhereEqualTo("user_id", bu.getObjectId());
+//            submit.setVisibility(View.GONE);
+//            update.setVisibility(View.VISIBLE);
+            cpbq.findObjects(CreatJianliActivity.this, new FindListener<UserRelease>() {
+                @Override
+                public void onSuccess(final List<UserRelease> list) {
+                    pd.dismiss();
+                    Picasso.with(CreatJianliActivity.this).load(list.get(0).getUr_icon()).into(user_img);
+                    Log.i("img", list.size()+"");
+                    name.setText(list.get(0).getUr_name());
+                    String s=list.get(0).getUr_sex();
+                    if (s.equals("男"))
+                    {
+                        getboy.setChecked(true);
+                    }
+                    else {
+                        getgirl.setChecked(true);
+                    }
+                    String date=list.get(0).getBirthday();
+                    chosebirth.setText(date);
+                    yaoqiu.setText(list.get(0).getUr_class());
+                    xueli.setText(list.get(0).getUr_study());
+                    jinyan.setText(list.get(0).getUr_work_time());
+                    sarlary.setText(list.get(0).getUr_money());
+                    address.setText(list.get(0).getUr_address());
+                    email.setText(list.get(0).getUr_email());
+                    tel.setText(list.get(0).getUr_tel());
+                    pd.dismiss();
+                    if (list.size()!=0)
+                    {
+                        update.setVisibility(View.VISIBLE);
+                        submit.setVisibility(View.GONE);
+                        final UserRelease userRelease =new UserRelease();
+                        update.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                final ProgressDialog pd = ProgressDialog.show(CreatJianliActivity.this, "", "正在修改资料.....");
+                                UserRelease gameScore = new UserRelease();
+                                gameScore.setUr_name(name.getText().toString());
+                                gameScore.setUr_icon(imgfile);
+                                gameScore.setUr_sex(sexs);
+                                gameScore.setUr_class(yaoqiu.getText().toString());
+                                gameScore.setBirthday(chosebirth.getText().toString());
+                                gameScore.setUr_study(xueli.getText().toString());
+                                gameScore.setUr_work_time(jinyan.getText().toString());
+                                gameScore.setUr_money(sarlary.getText().toString());
+                                gameScore.setUr_address(address.getText().toString());
+                                gameScore.setUr_email(email.getText().toString());
+                                gameScore.setUr_tel(tel.getText().toString());
+                                gameScore.update(CreatJianliActivity.this,list.get(0).getObjectId(), new UpdateListener() {
+                                    @Override
+                                    public void onSuccess() {
+                                        // TODO Auto-generated method stub
+                                        pd.dismiss();
+                                        CreatJianliActivity.this.finish();
+                                        Toast.makeText(CreatJianliActivity.this,"简历更改成功",Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(int code, String msg) {
+                                        // TODO Auto-generated method stub
+                                        pd.dismiss();
+                                        Toast.makeText(CreatJianliActivity.this,"简历更改失败",Toast.LENGTH_LONG).show();
+                                        Log.i("bmob","更新失败："+msg);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+                @Override
+                public void onError(int i, String s) {
+                    pd.dismiss();
+                    Log.i("ss", i + s);
+                }
+            });
+        }
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,22 +323,27 @@ public class CreatJianliActivity extends AppCompatActivity {
                 BmobProFile.getInstance(getApplication()).upload(mFilePath, new UploadListener() {
                     @Override
                     public void onSuccess(String s, String s1, BmobFile bmobFile) {
+                        pd.dismiss();
                         UserRelease gameScore = new UserRelease();
                         gameScore.setUr_name(name.getText().toString());
-                        imgfile=bmobFile.getUrl();
+                        imgfile = bmobFile.getUrl();
                         name.setTextColor(Color.CYAN);
                         gameScore.setBirthday(chosebirth.getText().toString());
                         gameScore.setUr_address(address.getText().toString());
                         gameScore.setUr_money(sarlary.getText().toString());
                         gameScore.setUr_sex(sexs);
+                        gameScore.setUr_class(yaoqiu.getText().toString());
                         gameScore.setUser_id(bu.getObjectId());
                         gameScore.setUr_icon(bmobFile.getUrl());
                         gameScore.setUr_study(xueli.getText().toString());
                         gameScore.setUr_work_time(jinyan.getText().toString());
+                        gameScore.setUr_email(email.getText().toString());
+                        gameScore.setUr_tel(tel.getText().toString());
                         gameScore.save(CreatJianliActivity.this, new SaveListener() {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(CreatJianliActivity.this, "简历提交成功", Toast.LENGTH_LONG).show();
+                                CreatJianliActivity.this.finish();
                                 pd.dismiss();
                             }
 
@@ -189,75 +369,13 @@ public class CreatJianliActivity extends AppCompatActivity {
                 });
             }
         });
-        Bmob.initialize(CreatJianliActivity.this, "e98c629c488e891e6d090798dd2ced7f");
-        BmobUser bu = BmobUser.getCurrentUser(CreatJianliActivity.this);
-        BmobQuery<UserRelease> cpbq = new BmobQuery<UserRelease>();
-        Log.i("ddfdfdfdf", "" + bu.getObjectId());
-        if (bu != null) {
-            cpbq.addWhereEqualTo("user_id", bu.getObjectId());
-            cpbq.findObjects(CreatJianliActivity.this, new FindListener<UserRelease>() {
-                @Override
-                public void onSuccess(final List<UserRelease> list) {
-                    Picasso.with(CreatJianliActivity.this).load(list.get(0).getUr_icon()).into(user_img);
-                    Log.i("img",list.get(0).getUr_icon());
-                    name.setText(list.get(0).getUr_name().toString());
-                    String s=list.get(0).getUr_sex().toString();
-                    if (s.equals("男"))
-                    {
-                        getboy.setChecked(true);
-                    }
-                    else {
-                        getgirl.setChecked(true);
-                    }
-                    String date=list.get(0).getBirthday().toString();
-                    chosebirth.setText(date);
-                    xueli.setText(list.get(0).getUr_study().toString());
-                    jinyan.setText(list.get(0).getUr_work_time().toString());
-                    sarlary.setText(list.get(0).getUr_money().toString());
-                    address.setText(list.get(0).getUr_address().toString());
-                    if (list.size()!=0)
-                    {
-                        update.setVisibility(View.VISIBLE);
-                        submit.setVisibility(View.GONE);
-                        final UserRelease userRelease =new UserRelease();
-                        update.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                UserRelease gameScore = new UserRelease();
-                                gameScore.setUr_name(name.getText().toString());
-                                gameScore.setUr_icon(imgfile);
-                                gameScore.setUr_sex(sexs);
-                                gameScore.setBirthday(chosebirth.getText().toString());
-                                gameScore.setUr_study(xueli.getText().toString());
-                                gameScore.setUr_work_time(jinyan.getText().toString());
-                                gameScore.setUr_money(sarlary.getText().toString());
-                                gameScore.setUr_address(address.getText().toString());
-                                gameScore.update(CreatJianliActivity.this,list.get(0).getObjectId(), new UpdateListener() {
 
-                                    @Override
-                                    public void onSuccess() {
-                                        // TODO Auto-generated method stub
-                                        Log.i("bmob","更新成功：");
-                                    }
-
-                                    @Override
-                                    public void onFailure(int code, String msg) {
-                                        // TODO Auto-generated method stub
-                                        Log.i("bmob","更新失败："+msg);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }
-                @Override
-                public void onError(int i, String s) {
-                    Log.i("ss", i + s);
-                }
-            });
-        }
     }
 
+    public void back(View v)
+    {
+        CreatJianliActivity.this.finish();
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

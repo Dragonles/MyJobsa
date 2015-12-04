@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:background="#FFF"
+        android:layout_marginBottom="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_job_type"
+            android:textSize="12sp"
+            android:textColor="@color/public_font_color"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_job_jobs"
+            android:textSize="12sp"
+            android:textColor="@color/public_font_color"
+            android:id="@+id/text_jobincome_type"
+            android:layout_above="@+id/textView4"
+            android:layout_toRightOf="@+id/textView"
+            android:layout_toEndOf="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_job_require"
+            android:textSize="12sp"
+            android:textColor="@color/public_font_color"
+            android:id="@+id/textView4"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_job_district"
+            android:textSize="12sp"
+            android:textColor="@color/public_font_color"
+            android:id="@+id/text_jobincome_district"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_toRightOf="@+id/textView4"
+            android:layout_toEndOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textview01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人数："
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:id="@+id/text_job_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_toRightOf="@id/textview01"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="20dp"
+            android:background="#FF0000"
+            android:layout_toStartOf="@+id/textView3"
+            android:layout_alignBottom="@+id/text_jobincome_district"
+            android:layout_toLeftOf="@+id/text_jobincome_zhuangtai"
+            android:layout_alignTop="@+id/text_jobincome_type" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已完成"
+            android:textSize="12sp"
+            android:textColor="@color/public_font_color"
+            android:id="@+id/text_jobincome_zhuangtai"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>

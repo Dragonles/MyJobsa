@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="F:\program\myjobsa\framework-picker\src\main\assets"><file name="city.json" path="F:\program\myjobsa\framework-picker\src\main\assets\city.json"/></source></dataSet><dataSet config="release"><source path="F:\program\myjobsa\framework-picker\src\release\assets"/></dataSet></merger>

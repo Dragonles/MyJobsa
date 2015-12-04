@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.job.activity.RecruitHistoryActivity">
+    <RelativeLayout
+        android:id="@+id/fabuactivity_top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/fragment_fabu_title">
+
+        <ImageButton
+            android:id="@+id/fabuactivity_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back"/>
+        <TextView
+            android:id="@+id/fragment_fabu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="兼职历史"
+            android:textSize="20sp"
+            android:textColor="@color/fragment_fabu_title_text_coler"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_my"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/fabuactivity_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</RelativeLayout>

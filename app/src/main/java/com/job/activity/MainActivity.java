@@ -20,6 +20,8 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,27 +57,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mnearll = (RadioButton) findViewById(R.id.nearll);//附近的单选按钮
         mper=(RadioButton)findViewById(R.id.per);//个人中心的单选按钮
 
+        //云推送start
+
+
+
         //设置模式开关传递，，接收  默认为true
         sp = MainActivity.this.getSharedPreferences("user_type", Context.MODE_PRIVATE);
         type = sp.getBoolean("type",true);
 
         //判断是招聘 还是 求职
-        if (type){
-            //true  求职者模式
-            //改变图片
-            Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_readio_button_s_style);
-            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
-            mfabu.setCompoundDrawables(null,topDrawable, null , null);
-            Log.i("FabuFragmentflag", "**********" + type);
-        }else{
-            //false  招聘者模式
-            //改变图片
-            Log.i("FabuFragmentflag","555555");
-            Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_radio_button_style);
-            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
-            mfabu.setCompoundDrawables(null,topDrawable, null , null);
-            Log.i("FabuFragmentflag","////////"+type);
-        }
+//        if (type){
+//            //true  求职者模式
+//            //改变图片
+//            Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_readio_button_s_style);
+//            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+//            mfabu.setCompoundDrawables(null,topDrawable, null , null);
+//            Log.i("FabuFragmentflag", "**********" + type);
+//        }else{
+//            //false  招聘者模式
+//            //改变图片
+//            Log.i("FabuFragmentflag","555555");
+//            Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_radio_button_style);
+//            topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+//            mfabu.setCompoundDrawables(null,topDrawable, null , null);
+//            Log.i("FabuFragmentflag","////////"+type);
+//        }
 
         //home第一个默认
         mhome.setChecked(true);
@@ -156,21 +162,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FabuFragment ff = new FabuFragment();
                 //add(父布局ID，Fragment，Tag);
                 //判断是招聘 还是 求职
-                if (type){
-                    //true  求职者模式
-                    //改变图片
-                    Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_readio_button_s_style);
-                    topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
-                    mfabu.setCompoundDrawables(null,topDrawable, null , null);
-                    Log.i("FabuFragmentflag", "******点击了****" + type);
-                }else{
-                    //false  招聘者模式
-                    //改变图片
-                    Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_radio_button_style);
-                    topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
-                    mfabu.setCompoundDrawables(null,topDrawable, null , null);
-                    Log.i("FabuFragmentflag","////点击了////"+type);
-                }
+//                if (type){
+//                    //true  求职者模式
+//                    //改变图片
+//                    Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_readio_button_s_style);
+//                    topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+//                    mfabu.setCompoundDrawables(null,topDrawable, null , null);
+//                    Log.i("FabuFragmentflag", "******点击了****" + type);
+//                }else{
+//                    //false  招聘者模式
+//                    //改变图片
+//                    Drawable topDrawable = getResources().getDrawable(R.drawable.nav2_radio_button_style);
+//                    topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+//                    mfabu.setCompoundDrawables(null,topDrawable, null , null);
+//                    Log.i("FabuFragmentflag","////点击了////"+type);
+//                }
                 ftt.add(R.id.fragment_parent,ff,"fabu");
             }
         }else if (id == R.id.nearll){   //我的
